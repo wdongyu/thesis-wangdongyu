@@ -24,7 +24,7 @@
 %% To produce the documentation run the original source files ending with `.dtx'
 %% through LaTeX.
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{njuthesis.cls}
+\ProvidesClass{njuthesis}
  [2018/08/07 v1.2.2 Document Class for the Degree Papers of Nanjing University]
 \newif\ifnjut@adobefonts\njut@adobefontstrue
 \newif\ifnjut@winfonts\njut@winfontsfalse
@@ -317,6 +317,7 @@
   \@setfontsize\tiny{\njut@fs@ssix}{\njut@fs@ssixskip}}
 \renewcommand{\scriptsize}{% 六号字 7.5bp
   \@setfontsize\scriptsize{\njut@fs@six}{\njut@fs@sixskip}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
 \renewcommand{\footnotesize}{% 小五号 9bp
   \@setfontsize\footnotesize{\njut@fs@sfive}{\njut@fs@sfiveskip}%
   \abovedisplayskip 6\p@ \@plus2\p@ \@minus4\p@
