@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{n+nt}{containers}\PYG{p}{:}
+  \PYG{p+pIndicator}{\PYGZhy{}} \PYG{n+nt}{command}\PYG{p}{:}
+    \PYG{p+pIndicator}{\PYGZhy{}} \PYG{l+lScalar+lScalarPlain}{/usr/local/bin/meshTraceManager}
+    \PYG{n+nt}{image}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{registry.cn\PYGZhy{}hangzhou.aliyuncs.com/wdongyu/trace\PYGZhy{}manager:sa\PYGZhy{}debugv1.1}
+    \PYG{n+nt}{imagePullPolicy}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{Always}
+    \PYG{n+nt}{name}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{tx\PYGZhy{}dep\PYGZhy{}manager}
+    \PYG{n+nt}{ports}\PYG{p}{:}
+    \PYG{p+pIndicator}{\PYGZhy{}} \PYG{n+nt}{containerPort}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{8091}
+      \PYG{n+nt}{protocol}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{TCP}
+    \PYG{n+nt}{volumeMounts}\PYG{p}{:}
+    \PYG{p+pIndicator}{\PYGZhy{}} \PYG{n+nt}{mountPath}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{/home/istio\PYGZhy{}proxy}
+      \PYG{n+nt}{name}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{share\PYGZhy{}socket}
+\end{Verbatim}

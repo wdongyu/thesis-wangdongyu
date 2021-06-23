@@ -1,6 +1,6 @@
 %% 使用 njuthesis 文档类生成南京大学学位论文的示例文档
 %%
-%% 作者：胡海星，starfish (at) gmail (dot) com
+%% 作者：胡海星，starfish  (at)  gmail  (dot)  com
 %% 项目主页: http://haixing-hu.github.io/nju-thesis/
 %%
 %% 本样例文档中用到了吕琦同学的博士论文的提高和部分内容，在此对他表示感谢。
@@ -14,6 +14,81 @@
 % 这仅仅是用于生成样例文档，正式论文中一般用不到该宏包
 \usepackage[math]{blindtext}
 \usepackage{setspace}
+\usepackage{listings}
+% \usepackage[utf8]{inputenc}
+% \usepackage[english]{babel}
+% \usepackage{minted}
+% \usemintedstyle{borland}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegreen}{rgb}{0,0.5,0}
+\definecolor{luared}{rgb}{0.5,0,0}
+
+
+\renewcommand{\lstlistingname}{代码}
+% Define a custom style
+\lstdefinestyle{cppStyle}{
+	language=C++,
+  backgroundcolor=\color{white},   
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{blue},
+  basicstyle=\ttfamily\footnotesize,
+  stringstyle=\color{red},
+  rulecolor=\color{black},
+  frame=single,
+  captionpos=b,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  keepspaces=true,                 
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=4,
+}
+
+\lstdefinestyle{golangStyle}{
+  language=C++,
+  backgroundcolor=\color{white},   
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue},
+  basicstyle=\linespread{1.3}\ttfamily\footnotesize,
+  stringstyle=\color{codegreen},
+  rulecolor=\color{black},
+  morekeywords={go, defer, nil, type, string, int32, len, append, range, func, APIHandler, ResponseWriter, Request},
+  float=!htbp,
+  frame=single,
+  captionpos=b,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  keepspaces=true,                 
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=4,
+}
+
+\lstdefinestyle{luaStyle}{
+	language=C++,
+  backgroundcolor=\color{white},   
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{codegreen},
+  basicstyle=\linespread{1.2}\ttfamily\footnotesize,
+  stringstyle=\color{luared},
+  rulecolor=\color{black},
+  morekeywords={function, local, pairs, then, end, not, nil, in},
+  float=!htbp,
+  frame=single,
+  captionpos=b,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  keepspaces=true,                 
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2,
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 设置《国家图书馆封面》的内容，仅博士论文才需要填写
@@ -28,7 +103,7 @@
 % - \clasifiedlevel，表示机密级：此级别的文献内容涉及重要的国家秘密 。
 % - \mostconfidentiallevel，表示绝密级：此级别的文献内容涉及最重要的国家秘密。
 % 此属性可选，默认为\openlevel，即公开级。
-\securitylevel{\controllevel}
+\securitylevel{\openlevel}
 % 设置论文按照《国际十进分类法UDC》的分类编号
 % 该编号可在下述网址查询：http://www.udcc.org/udcsummary/php/index.php?lang=chi
 \udc{004.72}
@@ -55,10 +130,10 @@
 % 设置论文的中文封面
 
 % 论文标题，不可换行
-\title{支持事务一致性的微服务动态更新系统实现}
+\title{面向版本一致性的微服务动态更新技术研究}
 % 如果论文标题过长，可以分两行，第一行用\titlea{}定义，第二行用\titleb{}定义，将上面的\title{}注释掉
-% \titlea{半轻衰变$D^+\to \omega(\phi)e^+\nu_e$的研究}
-% \titleb{和弱衰变$J/\psi \to D_s^{(*)-}e^+\nu_e$的寻找}
+% \titlea{半轻衰变$D^+\to \omega (\phi) e^+\nu_e$的研究}
+% \titleb{和弱衰变$J/\psi \to D_s^{ (*) -}e^+\nu_e$的寻找}
 
 % 论文作者姓名
 \author{王东宇}
@@ -83,9 +158,9 @@
 % 论文作者所在学校或机构的名称。此属性可选，默认值为``南京大学''。
 \institute{南京大学}
 % 论文的提交日期，需设置年、月、日。
-\submitdate{2021年4月115日}
+\submitdate{2021年4月15日}
 % 论文的答辩日期，需设置年、月、日。
-\defenddate{2021年6月1日}
+\defenddate{2021年5月25日}
 % 论文的定稿日期，需设置年、月、日。此属性可选，默认值为最后一次编译时的日期，精确到日。
 %% \date{2013年5月1日}
 
@@ -93,7 +168,7 @@
 % 设置论文的英文封面
 
 % 论文的英文标题，不可换行
-\englishtitle{Implementation of a Microservice System Supporting Dynamic Update With Transaction Consistency}
+\englishtitle{Research on Microservice Dynamic Update Technology With Version Consistency}
 % 论文作者姓名的拼音
 \englishauthor{Dongyu Wang}
 % 导师姓名职称的英文
@@ -108,14 +183,14 @@
 % 格式，即``Month day, year''，其中``Month''为月份的英文名全称，首字母大写；``day''为
 % 该月中日期的阿拉伯数字表示；``year''为年份的四位阿拉伯数字表示。此属性可选，默认值为最后
 % 一次编译时的日期。
-\englishdate{April 15, 2021}
+\englishdate{May 24, 2021}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 设置论文的中文摘要
 
 % 设置中文摘要页面的论文标题及副标题的第一行。
 % 此属性可选，其默认值为使用|\title|命令所设置的论文标题
-\abstracttitlea{支持事务一致性的微服务动态更新系统实现}
+\abstracttitlea{面向版本一致性的微服务动态更新技术研究}
 % 设置中文摘要页面的论文标题及副标题的第二行。
 % 此属性可选，其默认值为空白
 % \abstracttitleb{}
@@ -125,13 +200,14 @@
 
 % 设置英文摘要页面的论文标题及副标题的第一行。
 % 此属性可选，其默认值为使用|\englishtitle|命令所设置的论文标题
-\englishabstracttitlea{Implementation of a Microservice System Supporting}
+\englishabstracttitlea{Research on Microservice Dynamic Update Technology}
 % 设置英文摘要页面的论文标题及副标题的第二行。
 % 此属性可选，其默认值为空白
-\englishabstracttitleb{Dynamic Update With Transaction Consistency}
+\englishabstracttitleb{With Version Consistency}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\renewcommand\labelitemi{{\boldmath$\cdot$}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -150,70 +226,38 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 论文的中文摘要
 \begin{abstract}
-基于微服务架构(Microservices Architecture)的开发可以有效地缩短开发周期，满足了软件快速持续集成和持续交付的需求，在工业界得到广泛的应用。已部署的软件通常需要不断地进行更新迭代，以达到漏洞修复、增强功能以及适应外部需求等多方面的目的。然而传统的更新方式通常需要停止系统、部署新版本后再重新启动系统。很多关键领域的系统并不能接受停机更新所导致的系统中断，因此软件动态更新技术显得尤为关键。
+基于微服务架构 (Microservices Architecture) 的开发可以有效地缩短开发周期，满足了软件快速持续集成和持续交付的需求，在工业界得到广泛的应用。已部署的软件通常需要不断地进行更新迭代，以达到漏洞修复、增强功能以及适应外部需求等多方面的目的。然而传统的更新方式通常需要停止系统、部署新版本后再重新启动系统。很多关键领域的系统并不能接受停机更新所导致的系统中断，因此软件动态更新技术显得尤为关键。
 
-当前相关的微服务框架与架构对服务的动态更新支撑不足，没有考虑动态更新过程中系统的一致性。基于此，本文给出了一种支持事务一致性的微服务动态更新方法，并在具体的微服务架构上进行模型的扩展，完成了系统的设计与实现。此外，将本文的方法与实际的应用案例进行整合，完成了此方法和相关更新算法的实验评估对比，验证了其在更新过程中的安全性、及时性和低干扰性，以及对多服务同时进行更新的支持。
+当前相关的微服务框架与架构对服务的动态更新支撑不足，没有考虑动态更新过程中系统的一致性。基于此，本文给出了一种面向版本一致性的微服务动态更新方法，并在具体的微服务架构上进行模型的扩展，完成了系统的设计与实现。此外，将本文的方法与实际的应用案例进行整合，完成了此方法和相关更新算法的实验评估对比，验证了其在更新过程中的安全性、及时性和低干扰性，以及对多服务同时进行更新的支持。
 
-具体而言，本文的工作主要包括：\\
+具体而言，本文的工作主要包括：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$分析当前主流微服务框架技术在动态更新支撑方面的不足。针对此不足
-
-$\indent\enspace$，提出一种支持事务一致性的微服务动态更新的实现方法，在事务模型
-
-$\indent\enspace$、动态依赖管理和服务生命周期三个方面进行了相应的扩展，为具体的
-
-$\indent\enspace$动态更新过程提供运行时支持。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$基于上述的实现方法，在开源实现框架Istio之上完成了模型的扩展，添
-
-$\indent\enspace$加系统对动态更新的支持。该系统不仅保证动态更新过程的安全性、及
-
-$\indent\enspace$时性和低干扰性，而且实现的扩展模块对用户保持透明，与具体的服务
-
-$\indent\enspace$业务逻辑解耦开。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$利用实际的应用案例，整合上述实现方法并进行实验评估。通过使用不
-
-$\indent\enspace$同的更新算法，主要对动态更新过程中各个算法的安全性(Safety)、及
-
-$\indent\enspace$时性(Timeliness)、干扰性(Disruption)进行了性能比较，具体实验中同
-
-$\indent$$\enspace$时向多个服务发起动态更新请求，验证了本文实现方法对于多服务同时
-
-$\indent$$\enspace$更新的可行性和有效性。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item 提出一种面向版本一致性的微服务动态更新的实现方法。此方法针对当前主流微服务框架技术在动态更新支撑方面的不足，在事务模型、动态依赖管理和服务状态模型三个方面进行了相应的扩展，为具体的动态更新过程提供运行时支持。
+	\item 基于上述的实现方法，在开源实现框架Istio之上完成了模型的扩展，添加系统对动态更新的支持。该系统不仅保证动态更新过程的安全性、及时性和低干扰性，而且实现的扩展模块对用户保持透明，与具体的服务业务逻辑解耦开。
+	\item 利用实际的应用案例，整合上述实现方法并进行实验评估。通过使用不同的更新算法，主要对动态更新过程中各个算法的安全性 (Safety) 、及时性 (Timeliness) 、干扰性 (Disruption) 进行了性能比较，具体实验中同时向多个服务发起动态更新请求，验证了本文实现方法对于多服务同时更新的可行性和有效性。
+\end{itemize}
 
 % 中文关键词。关键词之间用中文全角分号隔开，末尾无标点符号。
-\keywords{微服务架构；事务一致性；动态更新}
+\keywords{微服务架构；版本一致性；动态更新}
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 论文的英文摘要
 \begin{englishabstract}
-Development based on the microservices architecture can effectively shorten the development cycle, meet the needs of rapid continuous integration and continuous delivery of software, and is widely used in the industry. The deployed software often need to be updated continuously to achieve various purposes such as bug fixes, enhancements, and adaptation to external requirements. However, the traditional way to update a software system is to stop the system, replace it with the new version, then restart it. This is not acceptable for some mission critical system for the interruption caused by downtime updates, so in such situations we need dynamic software update(DSU).
+Development based on the microservices architecture can effectively shorten the development cycle, meet the needs of rapid continuous integration and continuous delivery of software, and is widely used in the industry. The deployed software often need to be updated continuously to achieve various purposes such as bug fixes, enhancements, and adaptation to external requirements. However, the traditional way to update a software system is to stop the system, replace it with the new version, then restart it. This is not acceptable for some mission critical systems for the interruption caused by downtime updates, so in such situations we need dynamic software update (DSU) .
 
-Existing microservice framework and architecture provide limited supports for DSU, and do not take in account the system consistency during the dynamic update process. Based on this, this thesis presents a method for microservices that supports dynamic update with transaction consistency, extends the models on specific microservice architecture, and completes the design and implementation of the system. We have also integrated the method with the actual application case, completed the experimental evaluation and comparison with the related update algorithm, and the safety, update timeliness and low disruption during the update process , as well as support for simultaneous updates of multiple services are verified. 
+Existing microservice frameworks and architectures provide limited supports for DSU, and do not take in account the system consistency during the dynamic update process. Based on this, this thesis presents a method for microservices that supports dynamic update with version consistency, extends the models on specific microservices architecture, and completes the design and implementation of the system. We have also integrated the method with the actual application case, completed the experimental evaluation and comparison with the related update algorithm, and the safety, update timeliness and low disruption during the update process , as well as support for simultaneous updates of multiple services are verified. 
 
-The main work can be summarized as follows: 
+The work of this paper can be mainly summarized as follows: 
 
 \begin{itemize}
-  \item This thesis analyze the deficiencies of the existing microservice framework in dynamic update support. To solve this problem, we present a method for microservices that supports dynamic update with transaction consistency. It extends the transaction model, dynamic dependency management and service lifecycle to provide runtime support for specific dynamic update process.
+  \item This thesis presents a method for microservices that supports dynamic update with version consistency. Aiming at the deficiencies of the existing microservice frameworks in dynamic update support, this method extends the transaction model, dynamic dependency management and service state model to provide runtime support for specific dynamic update process.
   \item Based on the implementation method, the model is extended on the open source implementation framework Istio and support for dynamic update is added. The system not only ensure the safety, update timeliness and low disruption of the dynamic update process, but also the extension modules remain transparent to users and decoupled from the specific service business logic.
-  \item We have chosen a practical application case to integrate the implementation method and conduct experimental evaluations. Through the use of various update algorithms, the focus is put on the safety, update timeliness and disruption. In the specific experiment, dynamic update requests are initiated to multiple services at the same time, which verified the feasibility and effectiveness of the method implemented in this paper for multi services simultaneous update.
+  \item We have chosen a practical application case to integrate the implementation method and conduct experimental evaluations. Through the use of various update algorithms, the focus is put on the safety, update timeliness and disruption. In the specific experiments, dynamic update requests are initiated to multiple services at the same time, which verified the feasibility and effectiveness of the method implemented in this paper for multi services simultaneous update.
 \end{itemize}
 % 英文关键词。关键词之间用英文半角逗号隔开，末尾无符号。
-\englishkeywords{Microservices Architecture, Transaction Consistency, Dynamic Update}
+\englishkeywords{Microservices Architecture, Version Consistency, Dynamic Update}
 \end{englishabstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -241,7 +285,7 @@ The main work can be summarized as follows:
 
 \section{研究背景}
 \subsection{微服务架构}
-在软件技术的发展过程中，诞生了多样化的软件架构和技术。随着软件系统规模的扩大、功能的追加扩展，传统的单体应用(Monolithic)将应用程序的所有功能打包成一个独立的单元，最终将成为一个庞然大物，变得越来越复杂，逻辑耦合严重，难以理解。因此为了满足用户对于一定规模的软件的快速开发集成、提高可扩展性等要求，必须将其迁移到微服务架构中来\cite{bucchiarone2018monolithic,taibi2017processes,al2018comparative,马晓星2019软件开发方法发展回顾与展望}。微服务架构(Microservices Architecture)是一种基于一组独立部署运行的小型服务来构建应用的架构方法，服务间使用与语言无关的轻量级的通信协议进行通信\cite{Microservices,dragoni2017microservices}。与传统的单体应用相比，微服务架构可以帮助我们对应用进行有效地拆分，缩短软件开发周期，降低软件 维护成本，满足了软件程序对于快速持续集成和持续交付的需求\cite{balalaie2016microservices,taibi2018architectural}。由于前述的相关特性，微服务架构开始在诸多公司内部得到广泛的应用，包括Amazon\footnote{https://gigaom.com/2011/10/12/419-the-biggest-thing-amazon-got-right-the-platform/}、Netflix\footnote{https://www.nginx.com/blog/Microservices-at-netflix-architectural-best-practices/}、Spotify\footnote{https://www.infoq.com/presentations/linkedin-Microservices-urn/}等，成熟的微服务框架有Spring\footnote{https://spring.io/projects}、Dubbo\footnote{https://dubbo.apache.org/zh/}。
+在软件技术的发展过程中，诞生了多样化的软件架构和技术。随着软件系统规模的扩大、功能的追加扩展，传统的单体应用 (Monolithic) 将应用程序的所有功能打包成一个独立的单元，最终将成为一个庞然大物，变得越来越复杂，逻辑耦合严重，难以理解。因此为了满足用户对于一定规模的软件的快速开发集成、提高可扩展性等要求，必须将其迁移到微服务架构中来\cite{bucchiarone2018monolithic,taibi2017processes,al2018comparative,马晓星2019软件开发方法发展回顾与展望}。微服务架构 (Microservices Architecture) 是一种基于一组独立部署运行的小型服务来构建应用的架构方法，服务间使用与语言无关的轻量级的通信协议进行通信\cite{Microservices,dragoni2017microservices}。与传统的单体应用相比，微服务架构可以帮助我们对应用进行有效地拆分，缩短软件开发周期，降低软件 维护成本，满足了软件程序对于快速持续集成和持续交付的需求\cite{balalaie2016microservices,taibi2018architectural}。由于前述的相关特性，微服务架构开始在诸多公司内部得到广泛的应用，包括Amazon\footnote{https://gigaom.com/2011/10/12/419-the-biggest-thing-amazon-got-right-the-platform/}、Netflix\footnote{https://www.nginx.com/blog/Microservices-at-netflix-architectural-best-practices/}、Spotify\footnote{https://www.infoq.com/presentations/linkedin-Microservices-urn/}等，成熟的微服务框架有Spring\footnote{https://spring.io/projects}、Dubbo\footnote{https://dubbo.apache.org/zh/}。
 
 微服务架构的基本思想是将应用软件拆分为若干个较小的服务，不同的服务可由不同的团队使用不同的技术栈进行开发，从而达到解耦和降低复杂度的目的\cite{Microservices}。微服务架构的开发流程中的关键步骤在于对服务的拆分。微服务在进行拆分时需要遵循服务独立、数据一致、高内聚低耦合等原则，并且随着需求的迭代，服务的拆分需要持续的进行优化。
 
@@ -250,33 +294,15 @@ The main work can be summarized as follows:
 现有的关于微服务架构的研究较多关注于服务敏捷开发、服务治理等技术，而对于如何保证微服务在运行时正确地进行更新，相关的技术研究较少。
 
 \subsection{软件动态更新技术}
-Internet的发展推动了软件技术的快速发展，而随着软件外部环境和用户需求的不断变化，已部署的软件同样需要不断地进行更新迭代，来达到修复bug、增加功能、适应需求变化等多方面的目的。传统的软件更新通常需要停止旧版本软件的运行，然后完成软件的更新，再重新进行新版本软件的部署。显然，这种更新方法会引起一定时间内的系统中断，但某些服务提供商需要为用户提供全天候不间断的服务，对于企业服务，系统的中断将会导致经济效益的损失；而在航空和医疗领域，系统的中断将可能威胁到人的生命安全\cite{neamtiu2011cloud,baresi2014consistent,elliot2014devops}。因此，此类软件系统不能接受传统的更新方式，需要在不中断软件正常运行的情况对其进行更新，保证系统服务的持续可用，即所谓的软件动态更新\cite{kramer1990evolving}。然而，软件的动态更新并不容易实现，它在安全性\footnote{本文中的安全性和一致性均指系统在动态更新过程的前后都能正确运行}、及时性、低干扰性等多方面面临着较大的挑战。
+Internet的发展推动了软件技术的快速发展，而随着软件外部环境和用户需求的不断变更，已部署的软件同样需要及时且不时地进行更新迭代，来达到修复bug、增加功能、适应需求变化等多方面的目的。传统的软件更新通常需要停止旧版本软件的运行，然后完成软件的更新，再重新进行新版本软件的部署。显然，这种更新方法会引起一定时间内的系统中断，但某些服务提供商需要为用户提供全天候不间断的服务，对于企业服务，系统的中断将会导致经济效益的损失；而在航空和医疗领域，系统的中断将可能威胁到人的生命安全\cite{neamtiu2011cloud,baresi2014consistent,elliot2014devops}。因此，此类软件系统不能接受传统的更新方式，需要在不停止软件正常处理用户请求的情况下对其进行更新，保证系统服务的持续可用，即所谓的软件动态更新\cite{kramer1990evolving}。然而，实现软件的动态更新并不简单，它在安全性\footnote{本文中的安全性和一致性均指系统在动态更新过程的前后都能正确运行}、及时性、低干扰性等多方面面临着较大的挑战。
 
-从软件动态更新的粒度来看，基于软件的动态更新可大致分为三个层面：\\
+从软件动态更新的粒度来看，基于软件的动态更新可大致分为三个层面：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$\textbf{业务过程层面}$\indent$借助可变过程模型建模和过程迁移技术，可以将过程模型
-
-$\indent\enspace$的变化迅速反应到过程的动态执行上； 
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{程序代码层面}$\indent$在程序代码层面，对新旧版本程序进行差别分析，将旧版
-
-$\indent\enspace$本程序的状态动态迁移到新版本中，并按照新版本的程序继续执行；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{软件服务层面}$\indent$在构成软件服务的实例层面，研究面向动态更新的服务容
-
-$\indent\enspace$器等，实现软件系统的动态更新和重配置；\\
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item \textbf{业务过程层面}$\indent$借助可变过程模型建模和过程迁移技术，可以将过程模型的变化迅速反应到过程的动态执行上。
+	\item \textbf{程序代码层面}$\indent$在程序代码层面，对新旧版本程序进行差别分析，将旧版本程序的状态动态迁移到新版本中，并按照新版本的程序继续执行。
+	\item \textbf{软件服务层面}$\indent$在构成软件服务的实例层面，研究面向动态更新的服务容器等，实现软件系统的动态更新和重配置。
+\end{itemize}
 
 本文主要关注于从软件服务层面对软件进行动态更新。
 
@@ -285,134 +311,64 @@ $\indent\enspace$器等，实现软件系统的动态更新和重配置；\\
 
 对于基于微服务的动态更新，文献\cite{gabbrielli2016self}中实现的JRO基于指定的目标体系结构来完成微服务的自动更新部署，但局限于特定的编程语言Jolie\cite{Jolie}。文献\cite{sampaio2017supporting}描述了一个支持微服务演化的模型，该模型涵盖了微服务架构与功能相关内容，确保微服务完成重构的一致性。文献\cite{boyer2018architecture}提出了一种描述相关PaaS站点信息及其内部微服务部署信息的架构模型，运维人员通过指定更新策略来对特定的架构模型进行更新操作，最终反映到具体的服务中。这些方法实现了微服务的更新替换，但都缺乏对更新过程中运行时事务的考虑，无法保证动态更新前后系统运行的安全性。
 
-如何选择安全的更新点来保证动态更新前后系统运行的安全性，是动态更新中至关重要的问题，一致性要求系统中的运行时事务在动态更新前后都不会出现正确性问题\cite{segal1993fly}。在这方面的研究已经存在较多的研究成果。文献\cite{kramer1990evolving,magee1996dynamic}中的CONIC系统，提出了Quiescence更新算法，该算法给出了动态更新过程中对构件的管理包括增加、删除和替换等操作，而且定义了Quiescence状态并将其作为可以执行动态更新的安全时机。但为使系统到达Quiescence状态，算法要求系统中断所有外来的业务处理直至目标更新完成，对系统的干扰极大。因此在文献\cite{vandewoude2007tranquility}中放松了对安全点的定义，提出了Tranquility动态更新算法。但对于某些具体应用，Tranquility算法虽然大大降低了更新对系统造成的干扰，它仅仅保证了事务的局部而非全局一致性，因此导致它所定义的安全点可能并不安全。综合前述两种算法在动态更新过程中的问题，文献\cite{ma2011version,baresi2016efficient}提出了Version Consistency算法，该算法利用运行时动态依赖关系来对安全点进行定义，在保证动态更新过程的安全性的同时较大程度地减少了对系统带来的干扰，在安全性和干扰性等方面取得了较好的平衡。
+如何选择正确的更新点来保证动态更新前后系统运行的安全性，是动态更新中至关重要的问题，一致性要求系统中的运行时事务在动态更新前后都不会出现正确性问题\cite{segal1993fly}。在这方面的研究已经存在较多的研究成果。文献\cite{kramer1990evolving,magee1996dynamic}中的CONIC系统，提出了Quiescence更新算法，该算法给出了动态更新过程中对构件的管理包括增加、删除和替换等操作，而且定义了Quiescence状态并将其作为可以执行动态更新的安全时机。但为使系统到达Quiescence状态，算法要求系统中断所有外来的业务处理直至目标更新完成，对系统的干扰极大。因此在文献\cite{vandewoude2007tranquility}中放松了对安全点的定义，提出了Tranquility动态更新算法。但对于某些具体应用，Tranquility算法虽然大大降低了更新对系统造成的干扰，它仅仅保证了事务的局部而非全局一致性，因此导致它所定义的安全点可能并不安全。综合前述两种算法在动态更新过程中的问题，文献\cite{ma2011version,baresi2016efficient}提出了Version Consistency算法，该算法利用运行时动态依赖关系来对安全点进行定义，在保证动态更新过程的安全性的同时较大程度地减少了对系统带来的干扰，在安全性和干扰性等方面取得了较好的平衡。
 
-想要将动态更新应用于实际的微服务系统中，尚存在诸多问题。主要原因在于当前的动态更新算法通常都建立在特定的系统假设和约束条件之上，当系统的具体运行环境泛化时，相关的框架系统缺乏对动态更新的支撑。现有的微服务系统对动态更新支持的不足主要体现为：\\
+想要将动态更新应用于实际的微服务系统中，尚存在诸多问题。主要原因在于当前的动态更新算法通常都建立在特定的系统假设和约束条件之上，当系统的具体运行环境泛化时，相关的框架系统缺乏对动态更新的支撑。现有的微服务系统对动态更新支持的不足主要体现为：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$\textbf{安全性不足}$\indent$无法保证在系统中某个目标服务在动态更新过程中，正在运
-
-$\indent\enspace$行时事务和将要发生的事务的一致性；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{及时性不足}$\indent$当收到动态更新请求后，系统需要长时间的操作才能完成，
-
-$\indent\enspace$无法快速及时地完成目标服务的动态更新；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{干扰性过大}$\indent$系统在进行动态更新的过程中，需要长时间地中断目标服务
-
-$\indent\enspace$，对目标服务造成的干扰性过大；
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item \textbf{安全性不足}$\indent$无法保证在系统中某个目标服务在动态更新过程中，正在运行时事务和将要发生的事务的一致性。
+	\item \textbf{及时性不足}$\indent$当收到动态更新请求后，系统需要长时间的操作才能完成，无法快速及时地完成目标服务的动态更新。
+	\item \textbf{干扰性过大}$\indent$系统在进行动态更新的过程中，需要长时间地中断目标服务，对目标服务造成的干扰性过大。
+\end{itemize}
 
 \section{本文工作}
-随着微服务开发架构的流行，微服务系统变得多元且复杂，而现有的微服务架构并未对服务的动态更新提供相关的支持。本文针对上述动态更新技术中存在的问题，提出了一种支持事务一致性的微服务动态更新的实现方法。该方法利用Service Mesh\cite{li2019service}作为支撑微服务系统的底层架构，在其基础之上进行模型的扩展，为系统中多个服务的动态更新提供支持，对实际场景中不同类型的微服务系统均具有透明性。整体来看，本文的工作主要包括：\\
+随着微服务开发架构的流行，微服务系统变得多元且复杂，而现有的微服务架构并未对服务的动态更新提供相关的支持。本文针对上述动态更新技术中存在的问题，提出了一种面向版本一致性的微服务动态更新实现方法。该方法针对性在相关模型上完成了扩展与实现，为系统中多个服务的动态更新提供支持，对实际场景中不同类型的微服务系统均具有透明性。整体来看，本文的工作主要包括：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$分析当前主流微服务系统框架的基本功能和原理，得出现有框架技术在
-
-$\indent\enspace$动态更新支撑方面的不足。基于此，提出一种支持事务一致性的微服务
-
-$\indent\enspace$动态更新的实现方法，在事务模型、动态依赖管理和服务生命周期三个
-
-$\indent\enspace$方面进行了相应的扩展，为具体的动态更新过程提供运行时支持。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$基于上述的实现方法，在Service Mesh的开源实现框架Istio\footnote{Istio home page: https://istio.io/}之上完成了
-
-$\indent\enspace$模型的扩展，添加系统对动态更新的支持。该系统不仅保证动态更新过
-
-$\indent\enspace$程的安全性、及时性和低干扰性，而且实现的扩展模块对用户保持透明
-
-$\indent\enspace$，与具体的服务业务逻辑解耦开。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$利用实际的应用案例，整合上述实现方法并进行实验评估，使用不同的
-
-$\indent\enspace$更新算法，主要对动态更新过程中各个算法的安全性(Safety)、及时性
-
-$\indent\enspace$(Timeliness)、干扰性(Disruption)进行了性能比较，具体实验中同时向多
-
-$\indent$$\enspace$个服务发起动态更新请求，验证了本文实现方法对于多服务同时更新的
-
-$\indent$$\enspace$可行性和有效性。
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item 提出一种面向版本一致性的微服务动态更新的实现方法。通过分析当前主流微服务系统框架的基本功能和原理，得出现有框架技术在动态更新支撑方面的不足。针对此问题，本文提出了一种面向版本一致性的微服务动态更新的实现方法，在事务模型、动态依赖管理和服务状态模型三个方面进行了相应的扩展，为具体的动态更新过程提供运行时支持。
+	\item 基于上述的实现方法，在Service Mesh的开源实现框架Istio\footnote{Istio home page: https://istio.io/}之上完成了模型的扩展，添加系统对动态更新的支持。该系统不仅保证动态更新过程的安全性、及时性和低干扰性，而且实现的扩展模块对用户保持透明，与具体的服务业务逻辑解耦开。
+	\item 利用实际的应用案例，整合上述实现方法并进行实验评估，使用不同的更新算法，主要对动态更新过程中各个算法的安全性 (Safety) 、及时性 (Timeliness) 、干扰性 (Disruption) 进行了性能比较，具体实验中同时向多个服务发起动态更新请求，验证了本文实现方法对于多服务同时更新的可行性和有效性。
+\end{itemize}
 
 \section{本文组织}
 本文内容组织如下：
 
-第二章从软件动态更新和已有的微服务框架对动态更新的支持两个方面对相关工作进行介绍。在软件动态更新方面，主要介绍已有的动态更新算法，包括Quiescence、Tranquility和Version Consistency；在微服务框架支持方面，重点介绍常见主流的微服务框架，主要包括Spring、Dubbo和相关的Service Mesh技术架构，以及相关的云平台对微服务架构在动态更新方面的支持。
+第二章从软件动态更新和已有的微服务框架对动态更新的支持两个方面对相关工作进行介绍。在软件动态更新方面，主要介绍已有的动态更新算法，包括Quiescence、Tranquility和Version Consistency；然后重点介绍相关微服务框架在动态更新方面的支持，以及相关的云平台对微服务架构在动态更新方面的支持。
 
-第三章给出一种支持事务一致性的微服务动态更新实现方法。首先针对相关微服务架构对动态更新支持方面的不足与需求进行了探讨，然后基于此讨论，在事务模型、动态依赖管理和服务生命周期三个方面的扩展进行了详细的阐述，并选择将Service Mesh架构作为底层架构，完成模型的扩展。
+第三章给出一种面向版本一致性的微服务动态更新实现方法。首先针对相关微服务架构对动态更新支持方面的不足与需求进行了探讨，然后基于此讨论，在事务模型、动态依赖管理和服务状态模型三个方面的扩展进行了详细的阐述，完成模型的扩展。
 
-第四章介绍支持事务一致性的微服务动态更新系统实现。首先，给出系统实现的设计目标和准则。然后结合上述的扩展方案，在具体的开源实现框架Istio之上对相关的模型进行了模块化开发，分别详细介绍了各个扩展模块的内部结构设计与实现，以及系统运行时的模块交互关系。
+第四章介绍面向版本一致性的微服务动态更新系统实现。首先，给出系统实现的设计目标和准则。然后结合上述的扩展方案，在具体的开源实现框架Istio之上对相关的模型进行了模块化开发，分别详细介绍了各个扩展模块的内部结构设计与实现，以及系统运行时的模块交互关系。
 
-第五章案例分析与性能评估。结合具体的应用案例，通过实验来对不同的更新算法在安全性、及时性和干扰性三个方面进行性能的比较评估，此外针对实际应用的需求，添加了同时对多个服务进行更新的相关实验，并对实验结果进行分析。
+第五章案例分析与性能评估。结合具体的应用案例，通过实验来对不同的更新算法在安全性、及时性和干扰性三个方面进行性能的比较评估，此外针对实际应用的需求，添加了同时对多个服务进行更新的相关实验，并对实验结果进行分析。最后对应用进行了展示。
 
 第六章对本文的工作进行总结，并对未来的研究工作进行展望。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{相关工作}\label{chapter_relatedwork}
 
-本文主要研究针对分布式微服务系统的一致性动态更新，与本文的相关工作包括:软件动态更新的相关算法，以及现有主流的微服务框架，和相关微服务架构在动态更新方面的支持。下面将具体从这两个方面展开介绍。
+本文主要研究针对分布式微服务系统的一致性动态更新，与本文的相关工作包括:软件动态更新的相关算法，以及相关微服务架构在动态更新方面的支持。下面将具体从这两个方面展开介绍。
 
 \section{软件动态更新技术}
-随着网络环境和用户需求的不断变化，运行时的软件系统无法在设计时就考虑到所有的功能，因此软件系统总是需要不断地进行动态更新演化，以满足多元的功能和性能需求\cite{王怀民2011软件服务的在线演化}。相比较与传统的离线更新方式，动态软件更新(DSU)\cite{hicks2005dynamic}要求在软件系统不停止服务的状态下，使用新版本的软件来取代目标软件的旧版本，从而使软件系统达到增加功能或修复错误等目的。在动态更新的过程中，软件系统必须要确保程序始终处于运行状态，保证用户的请求不会被阻塞，而且需要满足一定的约束条件。因此软件系统的动态更新变得十分困难，面临诸多挑战\cite{mens2005challenges}:\\
+随着网络环境和用户需求的不断变化，运行时的软件系统无法在设计时就考虑到所有的功能，因此软件系统总是需要不断地进行动态更新演化，以满足多元的功能和性能需求\cite{王怀民2011软件服务的在线演化}。相比较与传统的离线更新方式，动态软件更新 (DSU) \cite{hicks2005dynamic}要求在软件系统不停止服务的状态下，使用新版本的软件来取代目标软件的旧版本，从而使软件系统达到增加功能或修复错误等目的。在动态更新的过程中，软件系统必须要确保程序始终处于运行状态，保证用户的请求不会被阻塞，而且需要满足一定的约束条件。因此软件系统的动态更新变得十分困难，面临诸多挑战\cite{mens2005challenges}:
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$\textbf{安全性(Safety)}$\indent$动态更新需要选择合适安全的更新时机，保证更新发生的
-
-$\indent\enspace$过程中以及更新完成后，系统中运行的请求都不会出现不一致的情况。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{及时性(Timeliness)}$\indent$系统从收到动态更新请求到更新完成所耗费的时间，
-
-$\indent\enspace$要求动态更新操作应尽快完成。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{干扰性(Disruption)}$\indent$系统在处理动态更新请求的状态下，相较于没有动态
-
-$\indent\enspace$更新请求的状态下，对正常处理业务请求所额外造成的干扰程度，即响
-
-$\indent\enspace$应时间的增加。要求动态更新算法所带来的干扰性应尽量减小。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item \textbf{安全性 (Safety) }$\indent$动态更新需要选择正确安全的更新时机，保证更新发生的过程中以及更新完成后，系统中运行的请求都不会出现不一致的情况。
+	\item \textbf{及时性 (Timeliness) }$\indent$系统从收到动态更新请求到更新结束所耗费的时间，要求动态更新操作应尽快完成。
+	\item \textbf{干扰性 (Disruption) }$\indent$系统在处理动态更新请求的状态下，相较于没有动态更新请求的状态下，对正常处理业务请求所额外造成的干扰程度，即响应时间的增加。要求动态更新算法所额外造成的干扰性应尽量减小。
+\end{itemize}
 
 动态更新的基础是保证安全性，关键在于如何确定安全的更新时间点。最基本的要求是，当目标更新服务没有处理请求，同时也不存在于任何一个用户请求的分布式调用中，那么此服务处于一个安全的更新时间点。为了更好地对相关算法进行描述，我们在此引入事务的相关概念。
 
 \begin{definition}[事务]\label{def:transaction}
-一个事务表示在某一服务上执行且在有限时间内结束的一系列操作。在某一服务上运行的事务T可以向其它服务发起调用，从而在目标服务生成一个新的事务T'，前后两个事务T和T'我们分别称为父事务和子事务，记为$sub(T, T')$。由系统外部调用生成的事务称为根事务。事务T运行所在的节点记为$h_T$。
+一个事务表示在某一服务上执行且在有限时间内结束的一系列操作。在某一服务上运行的事务T可以向其它服务发起调用，从而在目标服务生成一个新的事务T'，前后两个事务T和T'我们分别称为父事务和子事务，记为$sub (T, T') $。由系统外部调用生成的事务称为根事务。事务T运行所在的节点记为$h_T$。
 \end{definition}
 
 \begin{definition}[分布式事务]\label{def:dis_transaction}
-根事务及其所有的子事务统称为一个分布式事务，使用对应的根事务符号T进行标识。分布式事务T包括的所有扩展事务集$ext(T)$表示为：$ext(T) = \{x|x=T \vee sub(T,x)\}$
+根事务及其所有的子事务统称为一个分布式事务，使用对应的根事务符号T进行标识。分布式事务T包括的所有扩展事务集$ext (T) $表示为：$ext (T)  = \{x|x=T \vee sub (T,x) \}$
 \end{definition}
 
 \begin{definition}[动态更新的安全性]\label{def:safety}
-一次动态更新满足安全性，当且仅当不存在一个分布式事务的某两个子事务在同一个微服务的不同版本上运行，即只能全由微服务的旧版本进行处理或全由微服务的新版本进行处理。
+一次动态更新满足安全性，当且仅当不存在一个分布式事务的某两个子事务在同一个微服务的不同版本上运行，即一个分布式事务只能全由一个微服务的旧版本进行处理或对应的新版本进行处理。
 \end{definition}
 
 为了解决上述动态更新所面临的挑战，现有工作已有不少的研究。本节主要介绍三种：Krammer和Magee提出了Quiescence\cite{kramer1990evolving}算法。但Quiescence算法对系统造成的干扰极大，Vandewoude等则在其基础上提出了Tranquility\cite{vandewoude2007tranquility}算法。针对Tranquility只能保证局部一致性而不是全局一致性的问题，马晓星等提出了Version Consistency\cite{ma2011version}算法，此算法通过维护服务运行时的动态依赖关系，对安全点提出了新的定义，从而较好地满足了动态更新过程中的对于安全性的要求。
@@ -439,174 +395,66 @@ $\indent\enspace$应时间的增加。要求动态更新算法所带来的干扰
 在该软件系统实例中，假设希望提高数据的传输转换速度，系统需要对Convertor服务进行动态更新。若动态更新操作发生在时刻\ding{175}和\ding{177}之间，那么动态更新前的事务由旧版本的Convertor进行编码，而更新完成之后的事务由新版本的Convertor进行解码。若新旧版本的编解码算法不可兼容，便会导致系统出现不一致的情形。因此为满足安全性的需求，动态更新算法需要保证，不存在一个分布式事务的某两个子事务在同一个微服务的不同版本上运行。
 
 \subsection{Quiescence算法}
-对于一个分布式系统，通常由若干个节点组成，它们之间相互请求调用从而形成相应的依赖关系。此处节点为泛化代称，在具体的应用场景中，节点有具体的表现形态。当我们需要对此分布式系统中的某个节点执行动态更新操作时，包括节点的创建、删除等，便有可能导致系统的静态依赖关系或目标节点的内部状态发生变化，从而进一步地影响运行时事务的正确性。因此，为了保证动态更新过程中系统的安全性，Kramer和Magee\cite{kramer1990evolving}提出了Quiescence动态更新算法，算法中重点为节点定义了Active和Passive状态：\\
+对于一个分布式系统，通常由若干个节点组成，它们之间相互请求调用从而形成相应的依赖关系。此处节点为泛化代称，在具体的应用场景中，节点有具体的表现形态。当我们需要对此分布式系统中的某个节点执行动态更新操作时，包括节点的创建、删除等，便有可能导致系统的静态依赖关系或目标节点的内部状态发生变化，从而进一步地影响运行时事务的正确性。因此，为了保证动态更新过程中系统的安全性，Kramer和Magee\cite{kramer1990evolving}提出了Quiescence动态更新算法，算法中重点为节点定义了Active和Passive状态：
 
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item \textbf{Active}$\indent$处于该状态的节点可以主动地发起事务、接受事务并为其他事务服务。
+	\item \textbf{Passive}$\indent$处于该状态的节点不能主动地发起新事务，可以继续接受并为其他事务提供服务，但需要保证： (1) 该节点当前不处于自身发起的事务中； (2) 该节点不会发起新的事务。
+\end{itemize}
 
-$\bullet$\textbf{Active}$\indent$处于该状态的节点可以主动地发起事务、接受事务并为其他事务
+当某个节点需要执行动态更新操作时，节点的状态可以在Active和Passive之间进行转换，具体的转换关系如图\ref{fig:state_shift}。由前述的Passive状态定义可知，即使节点处于Passive状态下，执行动态更新也不能保证系统的安全性，因为此时节点有可能正在处理由其它节点所发起的事务。因此作者提出了更严格且保证安全性的约束，即Quiescence状态：
 
-$\indent\enspace$服务。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$\textbf{Passive}$\indent$处于该状态的节点不能主动地发起新事务，可以继续接受并为其
-
-$\indent\enspace$他事务提供服务，但需要保证：(1)该节点当前不处于自身发起的事务中
-
-$\indent\enspace$(2)该节点不会发起新的事务。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-当某个节点需要执行动态更新操作时，节点的状态可以在Active和Passive之间进行转换，具体的转换关系如图\ref{fig:state_shift}。由前述的Passive状态定义可知，即使节点处于Passive状态下，执行动态更新也不能保证系统的安全性，因为此时节点有可能正在处理由其它节点所发起的事务。因此作者提出了更严格且保证安全性的约束，即Quiescence状态：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点当前没有参与到自身发起的事务之中
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点不会发起新的事务
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点当前未为其他事务提供服务
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点无需为其他节点已经发起或者是将来会发起的事务服务\\
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item 该节点当前没有参与到自身发起的事务之中。
+	\item 该节点不会发起新的事务。
+	\item 该节点当前未为其他事务提供服务。
+	\item 该节点无需为其他节点已经发起或者是将来会发起的事务服务。
+\end{itemize}
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 0.8\textwidth]{image/state_shift.png}
+  \includegraphics[width= 0.6\textwidth]{image/state_shift.png}
   \caption{Quiescence节点状态转移图}
   \label{fig:state_shift}
 \end{figure}
 
-前述对于Quiescence状态的定义中，前两点与Passive状态定义一致，要求当前节点处于Passive状态。而后两点要求本节点不能为其他节点已经发起或者是将来会发起的事务服务，即表示依赖于本节点的其他节点也应处于Passive状态。若某一节点$Q$想要达到Quiescence状态，那么对于集合Passive Set $PS(Q)=\{Q\}\cup\{$直接依赖于$Q$的节点集合$\}$，只有$PS(Q)$中的所有节点均达到Passive状态，节点$Q$才能达到Quiescence状态。
+前述对于Quiescence状态的定义中，前两点与Passive状态定义一致，要求当前节点处于Passive状态。而后两点要求本节点不能为其他节点已经发起或者是将来会发起的事务服务，即表示依赖于本节点的其他节点也应处于Passive状态。若某一节点$Q$想要达到Quiescence状态，那么对于集合Passive Set $PS (Q) =\{Q\}\cup\{$直接依赖于$Q$的节点集合$\}$，只有$PS (Q) $中的所有节点均达到Passive状态，节点$Q$才能达到Quiescence状态。
 
-对于$PS(Q)$的定义仅仅考虑了一层依赖关系，更为全面的定义为集合Enlarged Passive Set $EPS(Q)$： \\
+对于$PS (Q) $的定义仅仅考虑了一层依赖关系，更为全面的定义为集合Enlarged Passive Set $EPS (Q) $：
 
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item $PS (Q) $中的所有节点均属于$EPS (Q) $。
+	\item 所有依赖于$PS (Q) $的节点。
+\end{itemize}
 
-$\bullet$$\indent$$PS(Q)$中的所有节点均属于$EPS(Q)$
+综上，若某一节点$Q$想要达到Quiescence状态，只有当$EPS (Q) $中所有的节点均达到Passive状态时，节点$Q$才能达到Quiescence状态。
 
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$所有依赖于$PS(Q)$的节点 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-综上，若某一节点$Q$想要达到Quiescence状态，只有当$EPS(Q)$中所有的节点均达到Passive状态时，节点$Q$才能达到Quiescence状态。
-
-在图\ref{fig:example}的示例中，对应的Convertor服务需要等到Portal、Camera、Viewer服务上运行的事务全部结束后才可达到Quiescence状态。可以发现，此时的Portal、Camera、Viewer服务均处于Passive状态，不能发起事务对外提供服务。因此Quiescence算法虽然可以确保动态更新过程中的安全性，但同时给系统带来了极大的干扰\cite{arnold1996software}。
+在图\ref{fig:example} 的示例中，对应的Convertor服务需要等到Portal、Camera、Viewer服务上运行的事务全部结束后才可达到Quiescence状态。可以发现，此时的Portal、Camera、Viewer服务均处于Passive状态，不能发起事务对外提供服务。因此Quiescence算法虽然可以确保动态更新过程中的安全性，但同时给系统带来了极大的干扰\cite{arnold1996software}。
 
 \subsection{Tranquility算法}
-Quiescence算法对于安全点的定义过于严格，给运行中的系统带来了极大的干扰。针对此问题，Vandewoude等在Quiescence的基础上提出了Tranquility算法\cite{vandewoude2007tranquility}，并利用该算法在DRACO\cite{vandewoude2003draco}中间件上实现了一个动态更新系统。Tranquility算法中继续沿用了Quiescence中事务、Active状态和Passive状态的相关定义，重新为节点定义了Tranquility状态。节点想要达到Tranquility状态需要满足条件：\\
+Quiescence算法对于安全点的定义过于严格，给运行中的系统带来了极大的干扰。针对此问题，Vandewoude等在Quiescence的基础上提出了Tranquility算法\cite{vandewoude2007tranquility}，并利用该算法在DRACO\cite{vandewoude2003draco}中间件上实现了一个动态更新系统。Tranquility算法中继续沿用了Quiescence中事务、Active状态和Passive状态的相关定义，重新为节点定义了Tranquility状态。节点想要达到Tranquility状态需要满足条件：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点当前没有参与到自身发起的事务中
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点不会发起新的事务
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点当前没有处理任何事务
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$该节点的相邻节点不存在过去使用过此节点并且将来还将使用此节点
-
-$\indent\enspace$的事务。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item 该节点当前没有参与到自身发起的事务中。
+	\item 该节点不会发起新的事务。
+	\item 该节点当前没有处理任何事务。
+	\item 该节点的相邻节点不存在过去使用过此节点并且将来还将使用此节点的事务。
+\end{itemize}
 
 在Tranquility的定义中，前两点同样与Passive状态定义一致。而后两点定义均弱于Quiescence的定义，因此满足Quiescence状态的节点必然满足Tranquility状态，但反之则未必。不同点在于，Tranquility算法只要求目标节点处于Passive状态，且与其相邻的节点也处于Passive状态即可。它不需要考虑运行于其它更多节点的事务运行情况，只要相邻的节点不存在使用过目标节点且将来还会使用目标节点的事务，目标节点就可以达到Tranquility状态。
 
-在图\ref{fig:timing}中，当Camera将处理结果返回给Portal后，系统运行到时刻\ding{176}，此时Camera、Viewer和Convertor均处于Passive状态，因此Convertor满足Tranquility状态的定义，系统判断可进行更新。但如果此时对Convertor进行版本更新，便有可能因为新版本的Convertor与旧版本存在不可兼容性而出现系统不一致的问题。因此Tranquility算法相比较于Quiescence算法，虽然可以减少对系统造成的干扰，但是无法保证动态更新的过程中系统的安全性问题。
+在图\ref{fig:timing} 中，当Camera将处理结果返回给Portal后，系统运行到时刻\ding{176}，此时Camera、Viewer和Convertor均处于Passive状态，因此Convertor满足Tranquility状态的定义，系统判断可进行更新。但如果此时对Convertor进行版本更新，便有可能因为新版本的Convertor与旧版本存在不可兼容性而出现系统不一致的问题。因此Tranquility算法相比较于Quiescence算法，虽然可以减少对系统造成的干扰，但是无法保证动态更新的过程中系统的安全性问题。
 
 \subsection{Version Consistency算法}
 已有的一些动态更新算法或依据静态依赖信息\cite{kramer1990evolving}，或依据动态依赖信息\cite{vandewoude2007tranquility,bidan1998dynamic,chen2002component}来保证本地一致性。而马晓星等提出了Version Consistency算法\cite{ma2011version}则对版本一致性的概念进行定义，用于解决了分布式系统下分布式事务的全局一致性问题。
 
-具体来说，Version Consistency中对于一次动态更新可使用如下的元组进行表示：$<\Sigma,\omega,\omega^{'},T,s>$。其中，$\Sigma$表示系统的静态依赖配置，$\omega$表示旧版本的目标集合(即需要动态更新的节点集合)，$\omega^{'}$表示新版本的目标节点集合，$T$表示系统状态转移工具，$s$则表示执行动态更新前对应的系统状态。因此，系统执行动态更新后，对应的状态可表示为：$s^{'} = T(s)$。
+Version Consistency算法定义的版本一致性，要求系统中运行的每一个事务都在旧版本节点上运行或者都在新版本节点上运行。以图\ref{fig:timing} 为示例，系统在时刻\ding{173}之前和时刻\ding{178}之后，对应的$ext (T_0) $中的事务均满足版本一致性的定义，因此都可以进行动态更新。但若系统选择在时刻\ding{176}对Convertor进行动态更新，此时$h_{T_2} = Convertor,h_{T_4} = Convertor^{'}$，且$T_2,T_4 \in ext (T_0) $，其中$Convertor$和$Convertor^{'}$分别表示更新前后的Convertor，显然不满足前述版本一致性的定义，此次动态更新将使得系统出现版本不一致的情况。
 
-\begin{definition}[版本一致性]\label{def:VersionConsistency}
-对于某一动态更新配置$<\Sigma,\omega,\omega^{'},T,s>$，事务T是满足版本一致性，当且仅当$\nexists T_1,T_2\in ext(T) ~|~ h_{T_1}\in \omega\wedge h_{T_2}\in \omega^{'}$。若当前动态更新配置$\Sigma$中所有的事务都满足版本一致性，那么称此动态更新是版本一致的。
-\end{definition}
+版本一致性虽然定义了动态更新的约束条件，但该条件在实际应用中需要全局中心化的信息，很难进行操作和检测判断。因此Version Consistency算法使用节点运行时的动态依赖关系，很好地解决了更新状态条件难以判断的问题。在Version Consistency算法中，动态依赖关系由具体的动态依赖边进行定义表示：其中$C\xrightarrow[T]{future} C^{'}$表示在根事务T中，节点$C$将来可能会用到节点$C^{'}$；$C\xrightarrow[T]{past} C^{'}$表示在根事务T中，节点$C$过去曾经使用过节点$C^{'}$。
 
-以图\ref{fig:timing}为示例，系统在时刻\ding{173}之前和时刻\ding{178}之后，对应的$ext(T_0)$中的事务均满足\ref{def:VersionConsistency}的定义，因此都可以进行动态更新。但若系统选择在时刻\ding{176}对Convertor进行动态更新，此时$h_{T_2} = Convertor,h_{T_4} = Convertor^{'}$，且$T_2,T_4 \in ext(T_0)$，显然不满足\ref{def:VersionConsistency}的定义，此次动态更新将使得系统出现版本不一致的情况。
+系统在运行时，将依据每一个根事务T的运行状态，动态地在节点间执行依赖边的添加和删除操作。基于动态依赖边，Version Consistency算法提出了Freeness更新判断条件，该状态要求，不存在同时指向目标更新节点且被标识为同一个根事务的$future$边和$past$边，表示不存在当前已经调用过目标更新节点且将来还有可能会调用目标更新节点的根事务。
 
-版本一致性虽然定义了动态更新的条件，但该条件在实际应用中需要全局中心化的信息，很难进行操作和检测判断。因此Version Consistency算法使用节点运行时的动态依赖关系，很好地解决了更新状态条件难以判断的问题。在Version Consistency算法中，动态依赖关系由具体的动态依赖边进行定义表示：
-
-\begin{definition}[动态依赖边]\label{def:DynamicDep}
-使用$C\xrightarrow[T]{future} C^{'}$表示在根事务T中，节点$C$将来可能会用到节点$C^{'}$；使用$C\xrightarrow[T]{past} C^{'}$表示在根事务T中，节点$C$过去曾经使用过节点$C^{'}$。
-\end{definition}
-
-系统在运行时，将依据每一个根事务T的运行状态，动态地在节点间执行依赖边的添加和删除操作。同时要求在对依赖边进行操作的过程中，应满足如下的约束：
-
-\begin{definition}[配置有效性]\label{def:ValidConfig}
-使用动态依赖边来表示节点间的动态依赖关系信息是正确有效的，当且仅当对于运行时$future/past$边的创建和删除操作满足以下规则：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$事务$T$从开始到结束，$T$所在的节点$C$必须存在边$C\xrightarrow[root(T)]{future} C$和$C\xrightarrow[root(T)]{past}$
-
-$\indent$$\enspace$$ C$，其中$root(T)$表示事务$T$的根事务标识；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$如果节点$C$和$C^{'}$之间没有相应的静态依赖关系，那么不能建立$C$到$C^{'}$
-
-$\indent$$\enspace$的$future/past$边；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$对于边$C\xrightarrow[T]{future} C^{'}$，必须在$ext(T)$的第一个子事务开始前建立，且必须在
-
-$\indent$$\enspace$确定$C$不会再在$C^{'}$上发起子事务后才能够被删除；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$对于边$C\xrightarrow[T]{past} C^{'}$，必须在由$C$在$C^{'}$上发起的属于$ext(T)$的子事务结束
-
-$\indent\enspace$之前建立；\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-\end{definition}
-
-基于动态依赖边，Version Consistency算法提出了Freeness更新判断条件，使得系统只需针对目标更新节点上相关动态依赖边的知识，就可以很方便地判断当前时刻目标更新节点是否满足动态更新的条件。
-
-\begin{definition}[Freeness]\label{def:Freeness}
-对于某个配置$\Sigma$，如果当前不存在同时指向节点$C$(或者节点集合$\omega$)的边$C^{'} \xrightarrow[T]{future} C$和边$C^{'} \xrightarrow[T]{past} C$，则称该节点$C$(或者节点集合$\omega$)对根事务$T$是$Freeness$的。若$C$(或者节点集合$\omega$)对于此配置$\Sigma$中的所有事务均是$Freeness$的，则称$C($或者节点集合$\omega$)在配置$\Sigma$中是$Freeness$的。
-\end{definition}
-
-图\ref{fig:dyn_dep}展示了系统中某个根事务运行时的动态依赖关系，其中$(a),(b),(c),(d)$分别对应图\ref{fig:timing}中的时刻\ding{172}、时刻\ding{174}、时刻\ding{176}、时刻\ding{178}。利用定义\ref{def:Freeness}可以发现，Convertor在时刻\ding{172}和时刻{178}满足Freeness，不存在标记为$T_0$的一对$future$和$past$边指向Convertor，可进行动态更新；而在时刻\ding{174}和时刻\ding{176}则同时存在标记为$T_0$的$future$和$past$边指向Convertor，因此Convertor不可以进行动态更新。
+图\ref{fig:dyn_dep} 展示了系统中某个根事务运行时的动态依赖关系，其中$ (a) , (b) , (c) , (d) $分别对应图\ref{fig:timing} 中的时刻\ding{172}、时刻\ding{174}、时刻\ding{176}、时刻\ding{178}。可以发现，Convertor在时刻\ding{172}和时刻{178}满足Freeness，不存在标记为$T_0$的一对$future$和$past$边指向Convertor，可进行动态更新；而在时刻\ding{174}和时刻\ding{176}则同时存在标记为$T_0$的$future$和$past$边指向Convertor，因此Convertor不可以进行动态更新。
 
 \begin{figure}[!htbp]
   \centering
@@ -615,7 +463,7 @@ $\indent\enspace$之前建立；\\
   \label{fig:dyn_dep}
 \end{figure}
 
-上面介绍的三种具体软件动态更新算法分别对安全更新点给出了自己的定义，即节点分别需要满足Quiescence状态、Tranquility状态和Freeness状态。判断的条件和使用的方式也略有差别，例如Quiescence算法主要利用的是事务和节点间的静态依赖信息，而Version Consistency在其基础上进一步地使用了节点间运行时刻的动态依赖信息，使得对于安全点的判断更为精准。对于前述的动态更新所面临的诸多挑战，如安全性(Safety)、及时性(Timeliness)和干扰性(Disruption)，三种算法的表现也不尽相同。具体对比如表\ref{table:comparison}所示。
+上面介绍的三种具体软件动态更新算法分别对安全更新点给出了自己的定义，即节点分别需要满足Quiescence状态、Tranquility状态和Freeness状态。判断的条件和使用的方式也略有差别，例如Quiescence算法主要利用的是事务和节点间的静态依赖信息，而Version Consistency在其基础上进一步地使用了节点间运行时刻的动态依赖信息，使得对于安全点的判断更为精准。对于前述的动态更新所面临的诸多挑战，如安全性 (Safety) 、及时性 (Timeliness) 和干扰性 (Disruption) ，三种算法的表现也不尽相同。具体对比如表\ref{table:comparison} 所示。
 
 \begin{table}
   \centering
@@ -632,581 +480,122 @@ $\indent\enspace$之前建立；\\
   \label{table:comparison}
 \end{table}
 
-\section{微服务架构}
+\section{微服务架构与动态更新}\label{sec:related_microservices}
 基于微服务理念进行分布式应用程序的开发，已经成为多数平台的通用指导模式\cite{newman2015building,nadareishvili2016microservice}。应用微服务架构的关键之一在于对复杂的业务系统进行拆分，使得拆分出来的服务能够相互保持逻辑上的独立，从而保证服务可由不同的团队进行负责，快速地完成开发、部署和更新等操作。拆分步骤必然导致系统中的模块数量变多，实际上是将原先业务系统内部维护的复杂度，转换成了模块与模块之间的通信与管理监控的复杂度。
 
-随着微服务架构的发展，为了简化开发流程，出现了典型的类库，如Netflix OSS\cite{NetflixOSS}套件，和相关的开发框架，如Spring和Dubbo。框架实现了分布式系统通信的相关通用功能，包括服务发现、负载均衡等，使得开发人员通过编写较少的代码，即可完成分布式微服务系统的开发，有效地提高了开发人员的工作效率。使用相关的开发框架虽然简易，但也存在不少的局限性问题。因此，本节将主要介绍较为主流的微服务框架：Spring、Dubbo，以及处理服务间请求的基础架构层技术：服务网格(Service Mesh)。
-
-\subsection{Spring}
-Spring是一个于2003年兴起的轻量级Java开发框架，由Rod Johnson提出，为了解决企业应用开发的复杂而诞生\cite{johnson2004spring}。Spring框架如图\ref{fig:spring_overview}所示，是一种分层架构，共分为如下具体的模块：\\
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 1.0\textwidth]{image/spring_overview.png}
-  \caption{Spring架构图}
-  \label{fig:spring_overview}
-\end{figure}
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Core Container}$\indent$核心容器提供Spring的基本功能，使用BeanFactory以控
-
-$\indent$$\enspace$制反转(IOC)的模式来进行依赖注入，以bean的形式组织管理Java程序
-
-$\indent$$\enspace$中的各个组件及其关系。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Data Access/Integration}$\indent$提供与多种数据框架集成的相关功能，包括jdbc
-
-$\indent$$\enspace$框架等，实现事务控制的相关模块。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Web}$\indent$提供基础的Web集成功能、相关的架构模块和与前端进行双向通信
-
-$\indent$$\enspace$的协议支持。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{AOP}$\indent$提供多种AOP实现方式的支持，包括AspectJ等。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Instrumentation}$\indent$提供了类工具和类加载器的相关实现的支持。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Messaging}$\indent$对消息架构和协议的支持。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Test}$\indent$提供对单元测试和集成测试的支持。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-分层架构允许开发人员自由地选择需要的组件模块，同时又为J2EE应用程序开发提供完整的集成框架。作为一个较为成熟的开源开发框架，Spring的核心在于控制反转(Inverse of Control, IOC)和面向切面编程(Aspect Oriented Programming, AOP)两部分。其中，控制反转的思想在于利用Spring核心容器进行依赖注入，一方面实现了资源的可配置，另一方面很好地降低了使用资源双方的耦合度；面向切面编程则使得开发人员不修改框架源代码，却能够实现想要的扩展功能，并形成可复用模块。概括来说，Spring的优点主要包括：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{轻量级}$\indent$Spring的体积和管理开销都很小。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{简化开发}$\indent$将对象间的依赖关系交由Spring控制，降低了业务对象替换时
-
-$\indent$$\enspace$的复杂度，避免硬编码所造成的过度耦合。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{支持AOP}$\indent$允许将通用任务如日志等进行集中式模块管理。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{测试}$\indent$可以方便地使用非容器依赖的编程方式来完成测试工作。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{集成}$\indent$提供了对各种成熟框架的直接支持，降低了开发人员的使用难度。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-\subsection{Dubbo}
-Dubbo是Alibaba开源的Java分布式服务框架，致力于提供高效的RPC远程服务调用方案以及服务治理方案，被广泛地应用于Alibaba的各方面业务中\cite{ren2014d}。Dubbo的架构与Spring类似，同样属于分层架构，使得各个层之间的耦合度尽量地减少。具体的服务调用关系流程如图\ref{fig:dubbo_overview}所示：\\
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 1.0\textwidth]{image/dubbo_overview.png}
-  \caption{Dubbo服务调用关系图}
-  \label{fig:dubbo_overview}
-\end{figure}
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$服务提供方运行容器并向注册中心进行注册；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$服务调用方向注册中心进行订阅，获取服务提供方的地址信息并进行
-
-$\indent$$\enspace$调用；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$Monitor监控模块负责异步地接收调用过程中的相关信息。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-Dubbo主要提供了服务注册和服务调用的相关功能，服务注册方面使用的自动注册和管理机制，使得服务调用方不需要硬编码服务方地址，提供多种注册中心的选择。服务调用方面透明化远程方法的调用，自动为服务调用方提供软负载均衡及容错机制。Dubbo架构具有连通性、健壮性和伸缩性等特点，有助于增强服务治理，使得传统的单体应用程序可以逐步平滑地重构为可扩展的分布式微服务架构。
-
-\subsection{Service Mesh}
-虽然开发框架本身对用户屏蔽了绝大多数通用功能的实现细节，但开发人员同样需要耗费大量时间与精力去学习掌握框架本身。同时，开发框架通常局限于一种或几种特定的编程语言，业务服务往往得随着框架服务的升级而升级。
-
-Mogan于2017年在其文章中提出Service Mesh的概念\cite{morgan2017sa}。Service Mesh考虑使用边车模式(Sidecar)，为每一个服务实例部署一个对应的Sidecar实例，开发人员只需关注核心的业务逻辑代码，而由Sidecar实例来负责实现服务发现、负载均衡、认证授权等通用性功能\cite{li2019service,el2019guiding}。Service Mesh的架构图如图\ref{fig:service_mesh}所示：
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 0.8\textwidth]{image/service_mesh.png}
-  \caption{Service Mesh架构}
-  \label{fig:service_mesh}
-\end{figure}
-
-随着微服务数量的增加，部署的Sidecar实例也逐渐增加，服务与Sidecar、Sidecar之间的通信便形成了一个错综复杂的网络，也即是服务网格(Service Mesh)名称的由来。Service Mesh插入的Sidecar实例通常为轻量级的网络代理，资源占用消耗较小，对部署的服务实例保持透明性。此外，Service Mesh将原本通过开发框架实现的通用性功能，从应用服务代码中解耦出来，降低耦合度的同时也可保证Service Mesh的组件可以独立于业务服务单独升级。
-
-\subsection{微服务架构与动态更新}
 随着微服务架构的流行，相关动态更新的工作也有了较多的关注，目前已经出现了不少的研究成果。
 
-在Spring框架中，支持两种热部署(Hot Deploy)的方式，热部署主要希望在修改应用代码时，不重启停止应用即可完成代码的更新。此功能类似与动态更新(动态配置)，但是在具体的实现上，热部署主要基于Java的动态类加载机制，不能很好地定义安全点，无法保证应用更新过程中的正确性和一致性。例如在Spring框架中，Spring Load是一个用于在JVM运行时重新加载类文件更改的JVM代理，允许用户动态对某个方法字段等进行添加、修改、删除。当使用Spring Load启动程序后，系统会自动监视对应的文件，当目标文件发生改动时，系统便会重新加载类文件，无需重启服务。Devtools的功能类似，原理在于使用两个类加载器：不改变的类包括第三方jar，由base类加载器加载，而目标正在开发的类由restart类加载器加载。当检查到类发现变化时，应用进行重启，restart类加载器直接丢弃重建，而base类加载器则继续留用。由于base类加载器已经可用且已填充，因此本次应用的重启会比普通的重启速度要快得多。这两种热部署的实现方式均考虑的是目标文件的相关变化，但并不关心更新过程中运行时事务的相关状态，因此无法保证更新的正确性。
+当前工业界中与微服务动态更新相关的部署技术包括蓝绿部署\cite{fowler2010bluegreendeployment}、金丝雀部署\cite{danilo2014canaryupdatestrategies,tarvo2015canaryadvisor}和滚动发布。其中，蓝绿部署不停止老版本的运行，使用冗余的设备部署一套新版本的应用来完成测试等相关工作，完成后将流量直接切换到新版本中。蓝绿部署需要额外的资源部署一套新版本的应用，成本较高。金丝雀部署部署新版本时对用户流量在新旧版本间进行分流，然后依据用户的反馈，逐步扩大新版本的应用范围，最终完成更新。滚动发布更新时取出一个或者多个服务器停止服务执行更新，完成后重新将其投入使用。周而复始，直至集群中的所有实例均更新为最新版本，在金丝雀发布基础上完成优化改进，是一种自动化程度较高的发布方式。后两种更新方式均未对更新过程中事务的运行状态进行考虑，不可避免地会导致系统出现不一致的行为。
+
+在Spring框架\cite{johnson2004spring}中，支持两种热部署 (Hot Deploy) 的方式，热部署主要希望在修改应用代码时，不重启停止应用即可完成代码的更新。此功能类似于动态更新 (动态配置) ，但是在具体的实现上，热部署主要基于Java的动态类加载机制，不能很好地定义安全点，无法保证应用更新过程中的正确性和一致性。例如在Spring框架中，Spring Load是一个用于在JVM运行时重新加载类文件更改的JVM代理，允许用户动态对某个方法字段等进行添加、修改、删除。当使用Spring Load启动程序后，系统会自动监视对应的文件，当目标文件发生改动时，系统便会重新加载类文件，无需重启服务。Devtools的功能类似，原理在于使用两个类加载器：不改变的类包括第三方jar，由base类加载器加载，而目标正在开发的类由restart类加载器加载。当检查到类发现变化时，应用进行重启，restart类加载器直接丢弃重建，而base类加载器则继续留用。由于base类加载器已经可用且已填充，因此本次应用的重启会比普通的重启速度要快得多。这两种热部署的实现方式均考虑的是目标文件的相关变化，但并不关心更新过程中运行时事务的相关状态，因此无法保证更新的正确性。
 
 微服务架构具有耦合度低、独立部署扩展等特性，因此它通常在相关的分布式云服务平台上进行部署运行并使用其底层框架的能力\cite{sampaio2017supporting}。例如Spinnaker\footnote{Spinnaker. https://www.spinnaker.io/}, AWS CodeDeploy\footnote{AWS CodeDeploy. https://aws.amazon.com/codedeploy/}, IBM UrbanCode\footnote{IBM UrbanCode. https://developer.ibm.com/urbancode/}都支持对部署于异构Paas平台上的微服务进行更新部署。更新的执行主要依靠运维人员对底层操作进行编写，并形成一系列的流水线操作，最后以脚本的形式来运行。这种更新方法具有较大的局限性，一方面它要求运维人员撰写出正确且有效的运行脚本，这通常需要耗费较长的调试时间；另一方面，脚本的执行通常不具有幂等性，如果基于脚本的更新过程出现异常的话，往往需要回滚并重启整个更新过程，并小心翼翼地保存相关的状态。push2cloud\footnote{Push2Cloud website. https://push2.cloud/}则运行对更新的目标系统结构进行描述，并支持部署在其上的微服务进行更新。但目前仅支持单站点的微服务部署，更新策略同样需要定义成对应平台的底层流水线操作。
 
 \section{本章小结}
-本章主要介绍了软件动态更新的相关算法，以及现有主流的微服务框架、相关微服务架构对动态更新方面的支持。在软件动态更新的相关算法中，本章重点介绍了Quiescence、Tranquility和Version Consistency三种算法，它们分别在各自的算法中对动态更新的安全点进行定义，以及安全点的相关判断条件。同时还对这三种算法在安全性(Safety)、及时性(Timeliness)和干扰性(Disruption)进行了具体的比较。而在现有主流的微服务框架中，主要介绍了Spring、Dubbo框架，以及新一代的Service Mesh技术，对其架构和相关特性进行了说明。最后介绍了Spring框架对于热部署机制的两种支持方式，以及相关分布式云服务平台对微服务架构在动态更新方面的支持。
+本章主要介绍了软件动态更新的相关算法，以及现有主流的微服务框架、相关微服务架构对动态更新方面的支持。在软件动态更新的相关算法中，本章重点介绍了Quiescence、Tranquility和Version Consistency三种算法，它们分别在各自的算法中对动态更新的安全点进行定义，以及安全点的相关判断条件。同时还对这三种算法在安全性 (Safety) 、及时性 (Timeliness) 和干扰性 (Disruption) 进行了具体的比较。而在现有工业界主流的微服务动态部署技术中，对蓝绿部署、金丝雀部署和滚动发布进行了相关说明。最后介绍了Spring框架对于热部署机制的两种支持方式，以及相关分布式云服务平台对微服务架构在动态更新方面的支持。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{支持事务一致性的微服务动态更新方法}\label{chapter_3}
-动态更新在实际应用场景中有着较大的需求，但当前的微服务架构对更新过程中的安全性考虑不足，缺乏对服务正确且快速更新的支持。本章首先对微服务动态更新的挑战进行讨论，分析当前的微服务架构在动态更新支撑方面的不足。然后基于上述讨论与分析，针对性地在事务模型、动态依赖管理和服务生命周期三个方面提出了相应的扩展和实现方案，并选择在服务网格Service Mesh之上进行相关模型的扩展，给出一种支持事务一致性的微服务动态更新实现方法VCIM(Version Consistency In Microservices)。
+\chapter{面向版本一致性的微服务动态更新方法}\label{chapter_3}
+微服务动态更新在实际应用场景中有着较大的需求，但当前的微服务架构对更新过程中的安全性考虑不足，缺乏对服务正确且快速更新的支持。本章首先对微服务动态更新进行讨论，分析当前的微服务架构在动态更新支撑方面未解决的关键问题。然后为解决上述问题，给出一种面向版本一致性的微服务动态更新实现方法VCIM (Version Consistency In Microservices) ，针对性地在事务模型、动态依赖管理和服务状态模型三个方面提出了相应的扩展和实现方案。
 
-\section{需求与挑战}
-为了在微服务架构之上，支持相关的动态更新算法，我们需要考虑：\\
+\section{问题分析}
+事务的概念具有多义性，在进行具体问题的分析之前，我们需要进行区分。当前相关的微服务框架所支持的事务主要指传统数据库中的ACID (Atomicity, Consistency, Isolation,
+Durability) 事务，如Spring框架中的@Transactional注解，显然此类事务无法满足对于用户请求状态的相关需求，也无法在更新时提供有效的语义支持。而本文所涉及的事务概念，不同于前述的数据库中的事务概念，指的是系统接受外来请求时将在服务上执行的一系列有意义的动作，依据前述定义\ref{def:transaction}，这些动作称之为事务，一次用户请求对应于一个特定的分布式事务。本文后续所提及的事务，均遵循此定义。
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{事务模型}
-
-$\indent$$\enspace$前述动态更新算法中均与事务模型相关，依据前述对于事务的定义\ref{def:transaction}，
-
-$\indent$$\enspace$是指服务上执行的一系列有意义的动作。而当前相关的微服务框架所支
-
-$\indent$$\enspace$持的事务主要指传统数据库中的ACID(Atomicity, Consistency, Isolation,
-
-$\indent$$\enspace$ Durability)事务，如Spring框架中的@Transactional注解，无法为更新
-
-$\indent$$\enspace$算法中的事务提供有效的语义支持。事务是服务运行时处理请求的基础
-
-$\indent$$\enspace$，事务的状态一定程度上反映当前服务所处的状态，是动态更新算法判
-
-$\indent$$\enspace$断系统状态的重要依据。因此，我们需要为微服务系统定义合适的事务
-
-$\indent$$\enspace$状态模型，为更新算法提供运行时事务信息。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{动态依赖管理}
-
-$\indent$$\enspace$服务间的静态依赖关系可以保守地对系统运行时进行描述，但是无法保
-
-$\indent$$\enspace$证动态更新的及时性。基于运行时服务间的动态依赖信息，动态更新算
-
-$\indent$$\enspace$法可以有效地对安全更新点进行判断，在保证动态更新一致性的前提下
-
-$\indent$$\enspace$，及时地完成服务的更新。因此，我们需要维护服务间的动态依赖信息
-
-$\indent$$\enspace$，为更新算法提供基础保障。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{服务生命周期}
-
-$\indent$$\enspace$现有的微服务系统通常仅考虑服务的基本状态，包括初始状态、运行状
-
-$\indent$$\enspace$态、终止状态等。显然单一的运行状态并不能很好地刻画目标服务在整
-
-$\indent$$\enspace$个更新过程中的状态。具体来说，除了相关的基本状态，运行状态的服
-
-$\indent$$\enspace$务从收到更新请求到最后更新结束，还需包括更多拥有特定意义的状态
-
-$\indent$$\enspace$，如更新开始状态、版本切换状态、结束撤销状态等。因此，我们需要
-
-$\indent$$\enspace$对更细粒度的服务生命周期及其状态跳转进行定义，保证更新前后的一
-
-$\indent$$\enspace$致性和持续性。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-与此同时，支持动态更新的微服务架构还面临着不少挑战。该架构还需尽量保证：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$动态更新开始前，用户可以对目标更新服务进行指定，且更新前后需保
-
-$\indent$$\enspace$证系统的安全性(定义\ref{def:safety})，不会出现因更新而导致的不一致现象。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$能够尽快地完成动态更新，有较好的及时性，且更新过程不会对整个系
-
-$\indent$$\enspace$统，包括其它非更新服务带来较大的干扰，保持良好的用户体验。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$内部的相关模块具有较低的耦合度，从而保证不会对基于此架构开发的
-
-$\indent$$\enspace$应用造成较大的影响，可以适配实际不同应用场景下的微服务系统，具
-
-$\indent$$\enspace$有较好的兼容性。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-基于上述的讨论和分析，为使当前的微服务系统支撑具体的动态更新算法，我们需要对事务模型、动态依赖管理、服务生命周期等进行扩展实现，并将其整合到相应的微服务架构中。
-
-\section{支持微服务动态更新的方法}
-实际应用场景下，不同的微服务系统将由不同的团队来进行开发，在通信方式、编程语言、运行环境等方面都存在较大的差异。而上述讨论均是针对微服务系统中将要扩展的模块来进行，与具体的微服务业务逻辑无关，应保证两者之间的松耦合性。因此，我们选择Service Mesh支撑微服务的底层架构，在其上进行相关模块的实现扩展和整合，给出一种支持事务一致性的微服务动态更新实现方法VCIM(Version Consistency In Microservices)。
-
-使用Service Mesh作为微服务的底层实现架构的优势主要体现在：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$Service Mesh使用流量代理的方式来对具体的微服务实例进行管理，因此
-
-$\indent$$\enspace$相关的扩展模块可以使用相同的方式来进行实现，在保证透明性的同时
-
-$\indent$$\enspace$，开发人员的业务代码具有较小的侵入性。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$Service Mesh允许开发人员选择自身偏好的编码语言，只需保证微服务间
-
-$\indent$$\enspace$的网络可达性即可，可适配于实际应用场景下不同类型的微服务系统。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$Service Mesh架构可保证微服务与动态更新的管理模块解耦开，两者都可
-
-$\indent$$\enspace$独立地完成升级。
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-\subsection{事务模型与依赖管理}
-运行时事务信息和服务间的动态依赖信息是更新算法判断服务能否被更新的基础依据。动态依赖信息需要同特定的事务相绑定才有具体的表征意义，因此VCIM扩展实现了事务依赖管理器，统一负责对运行时事务和动态依赖进行管理。
-
-VCIM首先对事务的状态进行了定义，如图\ref{fig:transaction_shift}所示。具体来说，相关的状态包括：初始化、运行、依赖变更、结束。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{初始化}~当服务接收到外来请求并被流量代理所拦截时，生成相应的事务
-
-$\indent$$\enspace$，且事务进入初始化状态。此时的事务还未被真正的服务实例处理，请
-
-$\indent$$\enspace$求将被进一步地转发。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{运行}~当服务实例开始执行由流量代理转发而来的事务时，事务进入运行
-
-$\indent$$\enspace$状态，表示事务开始执行具体的业务逻辑。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{依赖变更}~事务在运行时有可能对一个或多个依赖服务发起远程调用，并
-
-$\indent$$\enspace$在其之上发起相应的子事务。当远程调用返回时，服务间的动态依赖关
-
-$\indent$$\enspace$系便可能发生变化，当前服务已经使用过该依赖服务，以及当前服务在
-
-$\indent$$\enspace$将来是否还会调用该依赖服务。处于依赖变更状态的事务仍处于运行状
-
-$\indent$$\enspace$态，若后续还存在相关的远程调用，则此事务状态保持不变，否则，等
-
-$\indent$$\enspace$待事务执行完成，将转入结束状态。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{结束}~当事务执行完成时，将结果经流量代理返回给具体的调用者。此时
-
-$\indent$$\enspace$事务进入结束状态，表示一次事务完整的执行。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
+在微服务系统场景下，服务通过多副本来达到负载均衡、容错等目的，因此微服务系统中的动态更新将主要考虑多版本实例共存的服务更新。为方便说明，这里仍以\ref{sec:example} 节中引入的系统为例进行说明。当系统中的Convertor服务需要进行更新时，应用\ref{sec:related_microservices} 节中所介绍的相关部署技术，用户首先上线相应的新版本服务，然后进行流量的划分，此时的系统状态如图\ref{fig:normal_v1v2} 所示。
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 0.8\textwidth]{image/transaction_shift.png}
+  \includegraphics[width= 0.8\textwidth]{image/normal_v1v2.png}
+  \caption{主流动态更新流程示例}
+  \label{fig:normal_v1v2}
+\end{figure}
+
+由前述的讨论可知，版本一致性指的是微服务系统中的事务版本一致性，它与动态更新的安全性定义\ref{def:safety} 保持一致，要求在一次用户请求所对应的分布式事务中，Camera服务和Viewer服务应调用同一版本的Convertor服务，但当前系统并不能为此提供保证。因此当前主流的微服务架构和相关的动态部署技术无法支持微服务正确地进行动态更新，即无法保证动态更新过程中的版本一致性等关键特征，未解决的问题主要包括：
+
+\begin{itemize}
+	\item 未对请求的相关状态进行支持：动态更新安全性的定义如前述定义\ref{def:safety}，系统更新前后的一致性和用户请求在系统中所调用的服务版本密切相关。在当前的微服务架构中，用户向特定的服务发起请求，微服务架构随即将请求转发往特定的目标服务中，而选择哪一版本的目标服务实例将由相关的负载均衡策略来决定。请求的无标识性使得调用过程具有无状态性，因此无法保证正确地在不同版本间进行请求的转发，从而有可能导致更新过程中系统的不一致性。
+	\item 未对动态更新的安全点进行考虑：前述的相关动态更新算法对具体的安全更新点进行定义，在对应的时间点可执行相关的更新及撤销操作，并且保证动态更新的安全性。而主流的微服务架构在进行服务的更新时，目标在于服务的快速迭代部署，要求新版本服务尽快完成上线，同时允许多版本服务实例共存并处理外来请求，没有对动态更新的时间点进行严格的定义，无法保证动态更新过程的安全性和及时性等特征。
+\end{itemize}
+
+% 因此微服务系统中动态更新的安全点，主要包括了何时在
+
+% $\indent$$\enspace$新旧版本间进行请求流量的切换，以及何时对旧版本服务实例执行撤销
+
+% $\indent$$\enspace$操作。 
+
+支持动态更新的微服务架构不仅需要有效地解决上述问题，同时还需尽量保证：
+
+\begin{itemize}
+	\item 动态更新开始前，用户可以对目标更新服务进行指定，且更新前后需保证系统的安全性 (定义\ref{def:safety}) ，不会出现因更新而导致的不一致现象。
+	\item 能够尽快地完成动态更新，有较好的及时性，且更新过程不会对整个系统，包括其它非更新服务带来较大的干扰，保持良好的用户体验。
+	\item 内部的相关模块具有较低的耦合度，从而保证不会对基于此架构开发的应用造成较大的影响，可以适配实际不同应用场景下的微服务系统，具有较好的兼容性。
+\end{itemize}
+
+基于上述的讨论和分析，为使当前的微服务系统支撑具体的动态更新算法，我们将为上述问题提出相关的解决方法，并将其整合到相应的微服务架构中。
+
+\section{方法概述}
+实际应用场景下，不同的微服务系统将由不同的团队来进行开发，在通信方式、编程语言、运行环境等方面都存在较大的差异，而扩展模块方式 (如流量代理) 的实现，通过将相关的非业务功能抽取出来，与具体的微服务业务逻辑无关，保证了具体的业务逻辑与扩展模块之间的低耦合。因此，我们将基于流量代理的方式，给出一种面向版本一致性的微服务动态更新实现方法VCIM (Version Consistency In Microservices) 。此方法针对前述微服务架构在动态更新支持方面的问题，进行相关模块的扩展实现和整合，在保证版本一致性的基础上，快速有效地完成微服务的动态更新。
+
+\subsection{请求状态支持}
+
+% 因此，VCIM使用流量代理的方式，拦截并接管所有事务请求，同时为微服务系统定义合适的事务模型，对请求状态进行相关支持。
+
+由于事务的相关处理逻辑与微服务实际的业务逻辑无关，因此VCIM为每一个微服务实例插入相应的流量代理，当收到请求时，流量代理负责拦截请求并提取其中的事务上下文信息，若其中不存在相关的分布式事务标识，流量代理将负责生成；否则，沿用指定的分布式事务标识。后续发生远程服务调用时，前述的事务上下文信息将随请求一同发送，被调用方的流量代理将执行相同的逻辑，从而保证了请求在系统中运行时的唯一标识性。
+
+此外VCIM为微服务系统定义合适的事务模型，对请求状态进行相关支持。事务状态的定义如图\ref{fig:transaction_shift} 所示，具体来说，相关的状态包括：初始化、运行、依赖变更、结束。
+
+\begin{itemize}
+	\item \textbf{初始化}~当服务接收到外来请求时，首先被流量代理所拦截，生成相应的事务，事务进入初始化状态。此时的事务还未被真正的服务实例处理，请求将被进一步地转发。
+	\item \textbf{运行}~当服务实例开始执行由流量代理转发而来的事务时，事务进入运行状态，表示事务开始执行具体的业务逻辑。
+	\item \textbf{依赖变更}~事务在运行时有可能对一个或多个依赖服务发起远程调用，并在其之上发起相应的子事务。当远程调用返回时，服务间的动态依赖关系便可能发生变化，记录当前服务已经使用过该依赖服务，以及当前服务在将来是否还会调用该依赖服务。处于依赖变更状态的事务仍处于运行状态，若后续还存在相关的远程调用，则此事务状态保持不变，否则，等待事务执行完成，将转入结束状态。
+	\item \textbf{结束}~当事务执行完成时，将结果经流量代理返回给具体的调用者。此时事务进入结束状态，表示一次事务完整的执行。
+\end{itemize}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.7\textwidth]{image/transaction_shift.png}
   \caption{事务状态转移图}
   \label{fig:transaction_shift}
 \end{figure}
 
 分布式事务状态的定义与事务状态的定义保持一致，不同之处在于它由其所有的子事务的状态来共同表示。这些子事务的状态在分布式服务实例的本地进行维护，不存在中心化的存储。当系统在需要相关信息时，每个服务可借助于分布式事务标识信息，向依赖于自己的相关服务发起请求，获得全局的分布式事务信息状态。
 
-事务运行时状态影响服务间的动态依赖关系，反之服务间的动态依赖关系也需要具体的事务来进行标识，两者密切相关，相互耦合。VCIM通过对具体的程序进行分析，得到相对应的事务状态自动机，并利用此事务状态机来进行动态依赖信息的获取\cite{su2013automated}。当本地事务运行时，事务的依赖会发生相应的变化，从而反映出服务间依赖关系的变化。该事务状态自动机将分析出在当前状态下，事务曾经调用过的服务集合PAST\_SET，以及将来有可能需要调用的服务集合FUTURE\_SET，依据此信息形成动态依赖关系，并在本地进行管理。
+虽然VCIM从服务启动后就在不断地维护相关的事务信息，但可以看到VCIM对事务模型的定义较为精简，每个服务只需知晓和维护其本地事务的详细信息和对应的分布式事务标识，而无需在服务间进行事务上下文的同步工作，尽可能地减少对全局事务信息的维护，从而避免了服务间通信所带来的额外开销，并且达到了对相关模块减负的目的。
 
-虽然VCIM从服务启动后就在不断地维护相关的事务和动态依赖信息，但可以看到VCIM对事务模型的定义较为精简，每个服务只需知晓和维护其本地事务的详细信息和对应的分布式事务标识，而无需在服务间进行事务上下文的同步工作，尽可能地减少对全局事务信息的维护，从而避免了服务间通信所带来的额外开销，并且达到了对相关模块减负的目的。
+% 事务是服务运行时处理请求的基础，事务的状态一定程度上可以表征当前请求所处的状态，是动态更新算法判断系统状态的重要依据。借助于相关事务的上下文信息，请求在系统中运行时，系统便可以对不同的请求进行区分，通过设置相关路由规则等方式，将请求与特定版本的服务实例进行匹配，保证请求可以在多版本实例共存的情况下完成正确的转发，确保动态更新过程中系统的一致性。
 
-\subsection{服务生命周期}
-Service Mesh架构并未对运行于之上的服务的生命周期进行相关的约束，VCIM需要对系统中服务的生命周期模型进行更细粒度的扩展定义。该生命周期模型应包括动态更新过程中以及结束后服务可能的状态，以及状态间如何完成跳转，形成一次完整的更新闭环流程，为系统提供多次连续更新的能力。因此，如何对生命周期模型进行合适的定义，是服务正确进行动态更新的关键因素。本节将对动态更新过程中，服务的生命周期模型进行具体的定义，包括相关的服务状态及跳转关系。
+\subsection{安全更新点定义}
+由于在微服务系统场景下，多版本服务实例可共同对外提供服务，因此微服务动态更新所定义的安全更新点主要针对的是动态更新过程中对旧版本服务实例的撤销时机。
 
-VCIM允许用户在执行动态更新前指定需要更新的服务，称为目标更新服务，该服务可能对应于多个具体的服务实例。此处扩展的服务生命周期模型主要是针对于服务运行时(Running)状态的扩展，这里服务的状态将代表系统对外暴露的服务运行情况，是所有服务实例运行状态的总称，而不是特指某一个服务实例的运行状态。扩展后的服务生命周期模型如图\ref{fig:svc_lifecycle}所示，具体包括了：\\
+安全更新点的判断标准是旧版本服务实例何时不再需要处理请求。服务间的静态依赖关系可以保守地对系统运行时进行描述，但是无法保证动态更新的及时性。而基于运行时服务间的动态依赖信息，动态更新算法可以有效地对安全更新点进行判断，在保证动态更新一致性的前提下，及时地完成服务的更新。因此，VCIM通过扩展的动态依赖管理器，将维护服务间的动态依赖信息，为更新过程提供基础保障。这里的动态依赖信息将沿用文献\cite{ma2011version}中提出的动态依赖边概念。
 
-\begin{spacing}{1.0}
-\end{spacing}
+事务运行时状态影响服务间的动态依赖关系，服务间的动态依赖关系也需要具体的事务来进行标识。VCIM扩展的依赖管理器通过对具体的程序进行分析，得到相对应的事务状态自动机，并利用此事务状态机来进行动态依赖信息的获取\cite{su2013automated}。当本地事务运行时，事务的依赖会发生相应的变化，从而反映出服务间依赖关系的变化。该事务状态自动机将分析出在当前状态下，事务曾经调用过的服务集合PAST\_SET，以及将来有可能需要调用的服务集合FUTURE\_SET，依据此信息形成动态依赖关系，并在本地进行管理。
 
-$\bullet$$\indent$\textbf{Normal}~当服务初始启动就绪，或者某次更新完成后，服务将进入Normal
+当系统中的目标服务需要进行旧版本的撤销时，收集相关服务的动态依赖信息，同时结合本地维护的局部信息，对安全更新点进行判断：若不存在同时指向目标服务的$past$边和$future$边时，即集合PAST\_SET和集合FUTURE\_SET不存在交集时，可执行旧版本服务实例的撤销操作。下一章中将给出支持动态更新的微服务系统实现，对动态依赖管理器的实现进行详细说明。
 
-$\indent$$\enspace$状态。处于Normal状态下的服务和未扩展前正常运行状态下的服务一
+\subsection{服务状态模型}
+VCIM通过前述扩展的事务模型和动态依赖管理器，为微服务系统的动态更新提供了基础信息。此外，动态更新过程中版本切换算法和旧版本撤销算法的具体实现均需要存在相应的载体，且应该保证具有较好的抽象性，对服务的业务逻辑保持透明。因此VCIM对服务状态模型进行了扩展，一方面将相关的算法在服务状态模型中的相关扩展状态进行具体体现，另一方面很好地满足了动态更新过程中目标服务在不同状态下对于更新的需求。
 
-$\indent$$\enspace$致，系统仅存在(使用)一个版本的服务实例来处理外来请求。
+由于普通的微服务通常具有无状态、即插即用等特性，因此其状态模型较为简单，无法对动态更新中的相关语义进行理解。现有的微服务系统通常仅考虑服务的基本状态，包括初始状态、运行状态、终止状态等。显然单一的运行状态并不能很好地刻画目标服务在整个更新过程中的状态。具体来说，除了相关的基本状态，运行状态的服务从收到更新请求到最后更新结束，还需包括更多拥有特定意义的状态，如更新开始状态、版本切换状态、结束撤销状态等。因此，VCIM需要对服务的运行状态进行更细粒度的扩展，同时定义相关的状态跳转关系，保证更新前后的一致性和持续性。 
 
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Deployed}~当用户想要对某个服务进行动态更新时，首先需要上线相应的
-
-$\indent$$\enspace$新版本服务实例并等待其全部就绪，此时服务进入Deployed状态。此时
-
-$\indent$$\enspace$系统中对应的服务包括新旧多个版本实例，但请求仅由旧版本的服务实
-
-$\indent$$\enspace$例来进行处理。若此时未能确保所有新版本服务实例就绪，则后续随着
-
-$\indent$$\enspace$服务状态的转变，将请求发往未就绪的实例时，便会导致异常，返回错
-
-$\indent$$\enspace$误结果。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Prepared}~服务在完成Deployed状态之后，用户可指定目标更新服务，并
-
-$\indent$$\enspace$向系统发送动态更新请求。如何正确地为用户请求选择合适的服务实例
-
-$\indent$$\enspace$，取决于流量代理模块中的相关配置。为了能够保证流量在新旧版本的
-
-$\indent$$\enspace$服务实例间进行切换，VCIM首先需要对相关服务的流量代理模块添加相
-
-$\indent$$\enspace$关的路由规则，完成更新的准备工作，服务进入Prepared状态。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Shifted}~当前述动态更新的准备工作完成后，VCIM更新相关服务的流量
-
-$\indent$$\enspace$代理模块中的相关路由规则，进行流量的切换，服务进入Shifted状态。
-
-$\indent$$\enspace$当存在外来请求向目标更新服务发起调用时，若该请求对应的分布式事
-
-$\indent$$\enspace$务曾经在目标更新服务上发起过子事务，那么请求将被转发往旧版本的
-
-$\indent$$\enspace$服务实例；否则，请求将被转发往新版本的服务实例。显然，处于此状
-
-$\indent$$\enspace$态中的服务对于用户请求的处理满足定义\ref{def:safety}中对于动态更新的安全性
-
-$\indent$$\enspace$要求。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Freeing}~为了避免旧版本服务实例对于系统资源持续占有所造成的浪费，
-
-$\indent$$\enspace$用户向目标更新服务发起撤销旧版本的请求，服务进入Freeing状态。在
-
-$\indent$$\enspace$此状态下，目标更新服务将向依赖于自己的相关服务发起请求，并获得
-
-$\indent$$\enspace$相关的事务和动态依赖信息。同时结合本地所维护的相关信息，若所有
-
-$\indent$$\enspace$在目标更新服务上发起过子事务的分布式事务均不会再次向目标更新服
-
-$\indent$$\enspace$务发起请求，同时目标更新服务的所有旧版本服务实例当前都没有在执
-
-$\indent$$\enspace$行事务。则目标更新务满足定义\ref{def:Freeness}中的Freeness条件，旧版本服务实
-
-$\indent$$\enspace$例可以被正确撤销。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Updated}~处于Freeing状态的服务在满足Freeness条件后，便可执行旧版
-
-$\indent$$\enspace$本实例的撤销操作，服务进入到Updated状态。在此状态下，VCIM将对
-
-$\indent$$\enspace$相关服务的流量代理模块进行路由规则的重配置和相关事务的标记清理
-
-$\indent$$\enspace$工作。目标更新服务完成更新，回到Normal状态，完成一次完整的动态
-
-$\indent$$\enspace$更新闭环流程。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
+VCIM允许用户在执行动态更新前指定需要更新的服务，称为目标更新服务，该服务可能对应于多个具体的服务实例。此处服务状态模型的扩展主要是针对服务运行时 (Running) 状态的扩展，这里服务的状态将代表系统对外暴露的服务运行情况，是所有服务实例运行状态的总称，而不是特指某一个服务实例的运行状态。扩展后的服务状态如图\ref{fig:svc_lifecycle} 所示。可以看出，VCIM定义的服务扩展状态及其之间的跳转关系形成了一次完整的更新闭环流程，可为系统提供连续多次更新的能力。
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width= 0.6\textwidth]{image/svc_lifecycle.png}
-  \caption{服务生命周期}
+  \caption{服务状态模型}
   \label{fig:svc_lifecycle}
 \end{figure}
 
-在前述动态更新的过程中，VCIM仅关注目标更新服务的状态变化情况。在特定状态下，目标更新服务需要向依赖于自身的相关服务发起请求，以获得动态依赖信息，但并不对相关服务的状态进行限定。这意味着使用VCIM方法扩展的服务生命周期模型具有较好的隔离性，将不同服务间的状态解耦开，有效地提高了更新的效率。
+在前述动态更新的过程中，VCIM仅关注目标更新服务的状态变化情况。在特定状态下，目标更新服务需要向依赖于自身的相关服务发起请求，以获得动态依赖信息，但并不对相关服务的状态进行限定。这意味着使用VCIM方法扩展的服务状态模型具有较好的隔离性，可以将不同服务间的状态解耦开，有效地提高了更新的效率。
 
-由于普通的微服务通常具有无状态、即插即用等特性，因此其生命周期较为简单，无法对动态更新中的相关语义进行理解。VCIM通过对服务的生命周期模型进行扩展，很好地满足了动态更新过程中对于目标服务不同阶段的更新状态的需求。此外，动态更新中具体的版本更新切换算法和旧版本撤销算法，可在生命周期模型中的相应状态中进行具体的实现。
-
-\section{本章小结}
-本章主要对支持事务一致性的微服务动态更新方法VCIM进行了介绍。首先，对当前微服务架构支持动态更新所面临的挑战进行了探讨，对其不足和需求进行了具体的分析。然后针对相应的问题，有效地在事务模型、动态依赖管理和服务生命周期三个方面提出了具体的扩展方案。基于上述模型在Service Mesh上的扩展，给出对应的实现方法VCIM。下一章将结合具体的微服务系统示例，对VCIM的具体系统实现进行详细的阐述和说明。
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{支持动态更新的微服务系统实现}\label{chapter_4}
-在上一章中，VCIM具体从事务模型、动态依赖管理和服务生命周期三个方面，对支持动态更新的微服务架构进行了扩展。本章将根据第三章中提出的VCIM方法，结合具体的微服务系统示例，介绍如何在开源框架Istio之上进行具体设计，实现支持动态更新算法的微服务系统。
-
-\section{系统设计概述}
-根据章节\ref{chapter_3}中的介绍，为使Service Mesh架构支持服务的动态更新，这里考虑使用与流量代理类似的方式，对事务和依赖管理进行扩展。同时，为了使用户可以方便地对系统执行动态更新等操作，在具体的应用系统之外，定义了额外的服务生命周期模型和更新控制模块，为应用系统提供相应的管理功能，实现了模块间耦合度的降低。
-
-概括来说，支持动态更新的微服务系统设计目标和准则包括：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$兼容当前Service Mesh以及微服务的相关标准。在完成动态更新功能的支
-
-$\indent$$\enspace$持后，对任何正常开发部署的微服务应用都不应造成影响。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$添加的相关模块应保证动态更新过程的安全性、及时性和低干扰性。即
-
-$\indent$$\enspace$要求动态更新过程可以高效的完成，同时不会对系统中正常业务的请求
-
-$\indent$$\enspace$造成干扰，破坏系统的一致性。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$提供相应的动态更新管理接口，允许用户对系统中服务状态进行查询，
-
-$\indent$$\enspace$和发起动态更新请求等操作，系统依据服务的相关状态，自动完成动
-
-$\indent$$\enspace$态更新操作。 \\
-\begin{spacing}{1.0}
-\end{spacing}
-
-\section{系统扩展实现}
-本节将基于上一章提出的扩展方案，对相关的扩展模块进行实现，并且为用户提供相关的动态更新管理接口。下面将详细阐述事务依赖管理器模块$TxDepManager$、服务生命周期管理器模块$SvcLifecycleManager$，以及更新控制模块$UpdateController$的内部结构设计。
-
-\subsection{事务依赖管理器}
-为了使微服务系统能够对运行时事务提供相关的语义支持，维护服务间的动态依赖关系，定义了事务依赖管理器模块，并选择Service Mesh作为支撑微服务的底层实现架构。当前主流的Service Mesh实现方案是Google、IBM及Lyft合作开发的Istio开源框架\cite{sheikh2018modernize,wang2019developing}。Service Mesh架构为每一个微服务实例均部署特定的网络代理，整个系统引入了大量独立运行的单机代理服务。为了更好地保障系统的整体稳定性，Istio使用集中式的控制面板，提供了统一的管理运维入口，具体架构图如图\ref{fig:istio_arch}所示，其中：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{控制平面(Control Plane)}~负责监听底层平台数据源，作为配置中心，将
-
-$\indent$$\enspace$实时的配置信息动态地发往数据平面，控制整个系统的通信等各方面行
-
-$\indent$$\enspace$为；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{数据平面(Data Plane)}~自动注入的所有服务实例的流量代理总称，负责连
-
-$\indent$$\enspace$接到控制平面并接收相关配置信息，然后对请求按配置进行处理，是配
-
-$\indent$$\enspace$置规则的实际执行者； \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 1.0\textwidth]{image/istio_arch.png}
-  \caption{Istio架构图}
-  \label{fig:istio_arch}
-\end{figure}
-
-为实现VCIM中对于事务与依赖的扩展模型，我们选择在数据平面对相关模型提供支持。扩展后的某个具体的微服务实例如图\ref{fig:instance_model}所示，其中包括了：\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{流量代理}~拦截并接管所有的外来请求，生成相应的本地事务并添加或继
-
-$\indent$$\enspace$承特定的分布式事务标识。流量代理模块一方面负责将请求分发至相应
-
-$\indent$$\enspace$的业务逻辑模块，另一方面负责对前述的事务上下文信息进行传递。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{事务依赖管理器}~负责事务与依赖的管理，保证在事务依赖发生变更时，
-
-$\indent$$\enspace$对相应的服务集合PAST\_SET和FUTURE\_SET等信息进行更新保存，
-
-$\indent$$\enspace$为VCIM提供运行时事务信息和动态依赖信息。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{业务逻辑}~由服务的开发人员完成编写，从流量代理模块接收请求，执行
-
-$\indent$$\enspace$真正的业务逻辑并返回结果，再由流量代理模块将结果进一步地返回给
-
-$\indent$$\enspace$调用者。\\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-其中，流量代理模块和事务依赖管理器通过UDS\footnote{https://en.wikipedia.org/wiki/Unix\_domain\_socket}(Unix Domain Socket)进行通信，UDS通过指定同一主机上的socket文件，不需要经过网络协议栈即可完成数据的传输，效率较高。同时相关的数据总是以单向的形式发送，因此不会对流量代理模块中的请求处理分发流程造成阻塞，保证了对系统具有较低的干扰性。与此同时，流量代理模块对业务逻辑保持透明，为其屏蔽了调用方的相关细节，开发人员只需关注于业务代码，可以很好地与其它模块解耦开。
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 0.7\textwidth]{image/instance_model.png}
-  \caption{微服务实例模型}
-  \label{fig:instance_model}
-\end{figure}
-
-\subsection{服务生命周期管理器}
-想要对运行于Istio框架之上的服务进行动态更新，需要对原先服务的生命周期模型进行了扩展，定义了对应的服务生命周期管理器，提供监听服务状态、管理服务生命周期的基本功能。
-
-当前Istio框架的运行环境与容器编排系统Kubernetess\footnote{Kubernetes home page: https://kubernetes.io/}相耦合，服务以容器的形式运行在其之上。因此，服务生命周期管理器的实现主要利用Kubernetes中提供的自定义资源CRD(Custom Resource Definition)功能，其实现原理称为控制器模式，如图\ref{fig:reconcile_loop}所示。用户通过声明式命令对期望状态进行描述，控制器对比期望状态与系统实际的运行状态，如果有出入则通过自定义的调谐逻辑(Reconcile)驱使实际状态调整为期望状态。
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 0.8\textwidth]{image/reconcile_loop.png}
-  \caption{控制器模式}
-  \label{fig:reconcile_loop}
-\end{figure}
-
-通过对系统中服务的概念进行抽象，定义出与服务生命周期相匹配的自定义资源，称之为托管服务MS(Managed Service)。托管服务是一个抽象资源，每个托管服务包含了服务名称、服务的路由版本和当前状态等信息，负责对系统中的某一服务进行管理，对应服务在系统中可能存在多个版本的运行实例。当用户主动发起对托管服务的状态变更请求，如切换新版本、撤销旧版本等请求时，托管服务的控制器将监听到相应的变化，然后通过更新系统中的相关资源配置，驱使服务向目标状态进行跳转；若出现异常，调谐逻辑将重新执行，直至服务的状态跳转成功。
-
-托管服务资源的定义很好地与服务生命周期的概念完成了匹配，对外屏蔽了内部服务的细节信息，抽象出对应的服务运行状态，对内又可以很好地对各个服务实例的生命周期进行管理。
-
-由前一章节对服务生命周期模型的讨论可知，用户对目标更新服务的动态更新操作与服务当前所处的状态存在着密不可分的关系。因此，我们将动态更新的相关算法整合到托管服务的调谐逻辑之中，在完成动态更新中关键的版本更新和撤销操作的同时，驱使服务状态进行相应的跳转。下面将具体对实现的版本更新和版本撤销算法进行介绍，为方便说明，这里仍以\ref{sec:example}节中引入的系统为例。
+下面将结合扩展的服务状态，对实现的版本更新算法和版本撤销算法进行介绍。
 
 \subsubsection{版本更新}
-为了保证动态更新过程中的安全性，即满足定义\ref{def:safety}中的要求，更新算法首先需要对运行中的事务所涉及的服务版本进行标识。因此，我们在头信息中引入自定义字段x-version来进行具体的标识。当调用方向服务发起请求并返回时，利用流量代理模块的拦截功能，在其头信息中添加上带有x-version的服务版本信息，作为事务上下文信息进行返回。随后调用方在接收处理结果时，从头信息提取出事务上下文信息并进行更新本地信息，后续发起远程调用时将利用更新后的信息进行传递，从而完成了对运行时事务的版本标识工作。
+为了保证动态更新过程中的安全性，即满足定义\ref{def:safety} 中的要求，版本更新算法除了对运行时事务进行标识，还需要对运行中的事务所涉及的服务版本进行标识。因此，我们在头信息中引入自定义字段x-version来进行具体的标识。当调用方向服务发起请求并返回时，利用流量代理模块的拦截功能，在其头信息中添加上带有x-version的服务版本信息，作为事务上下文信息进行返回。随后调用方在接收处理结果时，从头信息提取出事务上下文信息并更新本地信息，后续发起远程调用时将利用更新后的信息进行传递，从而完成了运行时事务针对服务版本的标识工作。
 
-如图\ref{fig:convertor_normal_v1}所示，表示Convertor服务在初始版本为v1时，系统的正常运行状态。对于所有向Convertor服务发起调用的请求，在其返回头信息中添加x-version: convertor-v1字段，表征该事务针对于目标更新服务Convertor被标识为v1版本。这里将Convertor服务作为目标更新服务，因此仅关注与Convertor服务相关的字段信息，其它非目标更新服务可类推。
+当服务初始启动就绪，或者某次更新完成后，服务将进入Normal状态。处于Normal状态下的服务和未扩展前正常运行状态下的服务一致，系统仅存在 (使用) 一个版本的服务实例来处理外来请求。如图\ref{fig:convertor_normal_v1} 所示，表示Convertor服务在初始版本为v1时，系统的正常运行状态。所有向Convertor服务发起调用的请求，针对于目标更新服务Convertor，都将被标识为v1版本。这里将Convertor服务作为目标更新服务，因此仅关注与Convertor服务相关的字段信息，其它非目标更新服务可类推。
 
 \begin{figure}[!htbp]
   \centering
@@ -1215,7 +604,9 @@ $\indent$$\enspace$调用者。\\
   \label{fig:convertor_normal_v1}
 \end{figure}
 
-基于运行时事务版本的正确标识，我们可进一步实现服务版本的正确更新。服务被选定为目标更新服务之后，用户需要对新版本进行上线部署工作，服务进入Deployed状态，假定对应的新旧版本标识分别为v2、v1。此时，对流量代理模块中的路由规则进行修改，添加头信息匹配规则：若本次请求头信息中的x-version字段包含特定的版本信息，则将该请求转发往特定版本；否则，默认转发往旧版本，同时在返回头信息中添加对应字段。对应系统的运行状态如图\ref{fig:convertor_prepared_v1v2}所示，虽然系统中的v2版本服务实例已经就绪，但请求全部由v1版本的服务实例进行处理。
+基于运行时事务针对服务版本的正确标识，我们可进一步实现服务版本的正确更新。当用户想要对某个服务进行动态更新时，首先需要上线相应的新版本服务实例并等待其全部就绪，此时服务进入Deployed状态。此时系统中对应的服务包括新旧多个版本实例，但请求仅由旧版本的服务实例来进行处理。若此时未能确保所有新版本服务实例就绪，则后续随着服务状态的转变，请求有可能被发往未就绪的实例，进而导致异常，返回错误结果。
+
+想要对多版本共存的微服务系统进行版本的切换，VCIM添加基于头信息的相关路由规则，进行更新的准备工作，服务进入Prepared状态。假定对应的新旧版本标识分别为v2、v1，对应系统的运行状态如图\ref{fig:convertor_prepared_v1v2} 所示，虽然系统中的v2版本服务实例已经就绪，但请求全部由v1版本的服务实例进行处理。
 
 \begin{figure}[!htbp]
   \centering
@@ -1224,13 +615,7 @@ $\indent$$\enspace$调用者。\\
   \label{fig:convertor_prepared_v1v2}
 \end{figure}
 
-前述的更新准备工作完成后，将原先路由规则中默认转发往旧版本修改为默认转发往新版本。对应系统的运行状态如图\ref{fig:convertor_shift_v1v2}所示，考虑对于任意一个分布式事务T，在规则生效之后，向Convertor服务发起请求，将包括如下几种情况：
-
-\ding{172}若分布式事务T在运行的过程中还未在Convertor服务上发起过子事务，则其请求头信息中将不包含相关的x-version字段。依据生效后的路由规则，此分布式事务T对于Convertor服务的请求，将被转发往新版本；
-
-\ding{173}若分布式事务T在运行的过程中曾经在Convertor服务上发起过子事务，则由前述规则可知，其请求头信息中必然包含了相关的x-version字段。依据生效后的路由规则，此分布式事务T对于Convertor服务的请求，将被转发往与x-version字段具有相同标识的版本实例中；
-
-综上，保证了任一分布式事务T在运行过程中，不会在目标更新服务Convertor的不同版本实例上发起子事务，即满足了动态更新算法对于安全性的要求，同时也使得新生成的分布式事务可以较快地使用到新版本的服务。
+当前述动态更新的准备工作完成后，VCIM进行流量的切换，将原先路由规则中默认转发往旧版本修改为默认转发往新版本，服务进入Shifted状态。当存在外来请求向目标更新服务发起调用时，若该请求对应的分布式事务曾经在目标更新服务上发起过子事务，那么请求将被转发往旧版本的服务实例；否则，请求将被转发往新版本的服务实例。显然，处于此状态中的服务对于用户请求的处理满足定义\ref{def:safety} 中对于动态更新的安全性要求，对应系统的运行状态如图\ref{fig:convertor_shift_v1v2} 所示。
 
 \begin{figure}[!htbp]
   \centering
@@ -1239,206 +624,534 @@ $\indent$$\enspace$调用者。\\
   \label{fig:convertor_shift_v1v2}
 \end{figure}
 
-\subsubsection{版本撤销}
-前述的版本更新算法在保证动态更新安全性的基础上，很好地完成了目标更新服务新旧版本请求的正确导向。在此基础上，当收到用户的旧版本撤销请求时，要求版本撤销算法在保证用户请求不会出错的情况下，尽快完成旧版本实例的撤销，及时释放其占用的系统资源。
+至此，版本更新算法很好地完成了目标更新服务新旧版本的切换，同时保证了动态更新过程中系统的一致性。
 
-在正常状态下，当服务收到请求生成事务时，事务依赖管理器将负责对PAST\_SET集合进行更新，保存所有曾经在此服务上发起过子事务的分布式事务的标识，如图\ref{fig:normal_past_set}所示。
+\subsubsection{版本撤销}
+在版本更新算法的基础上，为了避免旧版本服务实例对于系统资源持续占有所造成的浪费，用户向目标更新服务发起撤销旧版本的请求，服务进入Freeing状态。
+
+% 当收到用户的旧版本撤销请求时，要求版本撤销算法在保证用户请求不会出错的情况下，尽快完成旧版本实例的撤销，及时释放其占用的系统资源。
+
+在正常状态下，当服务收到请求生成事务时，动态依赖管理器将负责对本地的动态依赖信息进行更新，保存已在本地完成调用的分布式事务标识集合PAST\_SET，以及将来有可能向其它服务发起调用的分布式事务标识集合FUTURE\_SET。如图\ref{fig:normal_past_set} 显示了某一运行时刻，系统中各个服务针对Convertor服务的本地动态依赖信息。
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 1.0\textwidth]{image/normal_past_set.png}
-  \caption{维护PAST\_SET集合}
+  \includegraphics[width= 1.0\textwidth]{image/normal_past_set_2.png}
+  \caption{维护动态依赖信息}
   \label{fig:normal_past_set}
 \end{figure}
 
-版本撤销算法的关键在于判断：\\
+版本撤销算法的关键在于判断：
 
+\begin{itemize}
+	\item 旧版本服务实例不会再为未结束的事务提供服务。
+	\item 旧版本服务实例当前未执行任何事务。
+\end{itemize}
 
-\begin{spacing}{1.0}
-\end{spacing}
+% 在此状态下，应用具体的旧版本撤销算法，目标更新服务将向依赖于自己的相关服务发起请求，并获得相关的事务和动态依赖信息。同时结合本地所维护的相关信息，若所有在目标更新服务上发起过子事务的分布式事务均不会再次向目标更新服务发起请求，同时目标更新服务的所有旧版本服务实例当前都没有在执行事务。则目标更新服务满足定义\ref{def:Freeness}中的Freeness条件，旧版本服务实例可以被正确撤销。
 
-$\bullet$$\indent$旧版本服务实例不会再为未结束的事务提供服务
+应用文献\cite{ma2011version}中所提出的Freeness更新判断条件，利用前述的事务依赖管理器维护的PAST\_SET和FUTURE\_SET集合，实现了对应的版本撤销算法，具体包括如下步骤：
 
-\begin{spacing}{2.0}
-\end{spacing}
+\begin{enumerate}
+	\item \textbf{阻塞访问}：当收到旧版本撤销请求时，系统首先阻塞所有向旧版本服务实例发起调用的新生成的分布式事务。而对于曾经在旧版本服务实例上发起过的子事务的分布式事务，则允许通过。被阻塞的请求将在调用方执行重试，依据前述版本更新算法中路由规则的定义，本次请求将会被转发往新版本的服务实例中，保证了用户请求依然能够被正常地处理，而且不会再有新的分布式事务标识添加到相关的事务依赖管理器所维护的PAST\_SET集合中，对应的系统状态如图\ref{fig:revoke_1} 所示。
 
-$\bullet$$\indent$旧版本服务实例当前未执行任何事务 \\
+	\begin{figure}[!htbp]
+	  \centering
+	  \includegraphics[width= 1.0\textwidth]{image/revoke_1.png}
+	  \caption{阻塞访问}
+	  \label{fig:revoke_1}
+	\end{figure}
 
-\begin{spacing}{1.0}
-\end{spacing}
+	\item \textbf{同步状态}：由前述可知，分布式事务将来是否会调用目标更新服务的状态信息，保存于系统内的各个服务实例中。目标更新服务可利用本地维护的PAST\_SET集合，向依赖于自身的相关服务发起请求，同步相关服务的事务状态信息，便可得到相应的FUTURE\_SET集合。此集合代表所有将来会向目标更新服务发起请求的分布式事务标识集合，同步过程如图\ref{fig:revoke_2} 所示，其中的红色虚线段表示具体请求过程。
 
-应用文献\cite{ma2011version}中所提出的Freeness更新判断条件\ref{def:Freeness}，利用前述的事务依赖管理器维护的PAST\_SET和FUTURE\_SET集合，实现了对应的版本撤销算法，具体包括如下步骤：\\
+	\begin{figure}[!htbp]
+	  \centering
+	  \includegraphics[width= 1.0\textwidth]{image/revoke_2.png}
+	  \caption{同步状态}
+	  \label{fig:revoke_2}
+	\end{figure}
 
+	\item \textbf{等待撤销}：基于前一步骤所得到的FUTURE\_SET集合，并结合实例本地事务依赖管理器所维护的相关信息，撤销算法如图\ref{fig:revoke_3} 所示，可执行进一步的判断：若接收到的FUTURE\_SET集合为空，表示针对当前所有调用过旧版本服务实例的分布式事务，均不会再向目标更新服务发起请求，因此只需等待当前旧版本实例上的事务执行结束，即可执行撤销操作，算法执行结束；否则，即表示当前系统中的分布式事务在将来仍会使用到旧版本的服务实例，此时撤销算法流程将进入等待状态，待所有FUTURE\_SET集合中的分布式事务均完成调用后，对PAST\_SET集合进行更新，并重新执行前一步骤，以重新同步相关的分布式事务状态。
 
-\begin{spacing}{1.0}
-\end{spacing}
+	\begin{figure}[!htbp]
+	  \centering
+	  \includegraphics[width= 1.0\textwidth]{image/revoke_3.png}
+	  \caption{等待撤销}
+	  \label{fig:revoke_3}
+	\end{figure}
+\end{enumerate}
 
-$1$$\indent$\textbf{阻塞访问}：当收到旧版本撤销请求时，系统首先阻塞所有向旧版本服务
-
-$\indent$$\enspace$实例发起调用的新生成的分布式事务，即其头信息中不存在标识版本信
-
-$\indent$$\enspace$息的x-version字段。而对于曾经在旧版本服务实例上发起过的子事务的
-
-$\indent$$\enspace$分布式事务，则允许通过。被阻塞的请求将在调用方执行重试，依据前
-
-$\indent$$\enspace$述版本更新算法中路由规则的定义，本次请求将会被转发往新版本的服
-
-$\indent$$\enspace$务实例中，保证了用户请求依然能够被正常地处理，而且不会再有新的
-
-$\indent$$\enspace$分布式事务标识添加到相关的事务依赖管理器所维护的PAST\_SET集合
-
-$\indent$$\enspace$中，对应的系统状态如图\ref{fig:revoke_1}所示；
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 1.0\textwidth]{image/revoke_1.png}
-  \caption{阻塞访问}
-  \label{fig:revoke_1}
-\end{figure}
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$2$$\indent$\textbf{同步状态}：由前述可知，分布式事务将来是否会调用目标更新服务的状
-
-$\indent$$\enspace$态信息，保存于系统内的各个服务实例中。目标更新服务可利用本地维
-
-$\indent$$\enspace$护的PAST\_SET集合，向依赖于自身的相关服务发起请求，同步相关服
-
-$\indent$$\enspace$务的事务状态信息，便可得到相应的FUTURE\_SET集合。此集合代表所
-
-$\indent$$\enspace$有将来会向目标更新服务发起请求的分布式事务标识集合，同步过程如
-
-$\indent$$\enspace$图\ref{fig:revoke_2}所示，其中的红色虚线段表示具体请求过程：
-
-\begin{spacing}{2.0}
-\end{spacing}
+处于Freeing状态的服务在执行完前述的版本撤销算法后，便可执行旧版本实例的撤销操作，服务进入到Updated状态。在此状态下，VCIM将对相关服务的流量代理模块进行路由规则的重配置和相关事务的标记清理工作。目标更新服务完成更新，回到Normal状态，系统状态如图\ref{fig:convertor_normal_v2} 所示，完成一次完整的动态更新闭环流程。
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 1.0\textwidth]{image/revoke_2.png}
-  \caption{同步状态}
-  \label{fig:revoke_2}
+  \includegraphics[width= 0.8\textwidth]{image/convertor_normal_v2.png}
+  \caption{更新完成后系统状态}
+  \label{fig:convertor_normal_v2}
 \end{figure}
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$3$$\indent$\textbf{等待撤销}：基于前一步骤所得到的FUTURE\_SET集合，并结合实例本地
-
-$\indent$$\enspace$事务依赖管理器所维护的相关信息，撤销算法如图\ref{fig:revoke_3}所示，可执行进
-
-$\indent$$\enspace$一步的判断：若接收到的FUTURE\_SET集合为空，表示针对当前所有调
-
-$\indent$$\enspace$用过旧版本服务实例的分布式事务，均不会再向目标更新服务发起请求
-
-$\indent$$\enspace$，因此只需等待当前旧版本实例上的事务执行结束，即可执行撤销操作
-
-$\indent$$\enspace$，算法执行结束；否则，即表示当前系统中的分布式事务在将来仍会使
-
-$\indent$$\enspace$用到旧版本的服务实例，此时撤销算法流程将进入等待状态，待所有
-
-$\indent$$\enspace$FUTURE\_SET集合中的分布式事务均完成调用后，对PAST\_SET集合进
-
-$\indent$$\enspace$行更新，并重新执行前一步骤，以重新同步相关的分布式事务状态。 \\
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width= 1.0\textwidth]{image/revoke_3.png}
-  \caption{等待撤销}
-  \label{fig:revoke_3}
-\end{figure}
-
-\begin{spacing}{1.0}
-\end{spacing}
 
 版本撤销算法利用本地维护的相关事务依赖信息，通过相关的同步请求来收集到具体的分布式事务状态信息，正确判断服务能否被撤销，保证撤销操作的及时性，而且不会阻塞正常的业务请求，对系统的干扰性较小。
 
-\subsection{更新控制模块}
-前述的相关模块为系统提供了支持动态更新的核心能力，为使系统具有更好的操作性，定义了更新控制模块。
+\section{本章小结}
+本章主要对面向版本一致性的微服务动态更新方法VCIM进行了介绍。首先，对当前微服务架构支持动态更新所面临的关键问题进行了探讨，对其不足进行了具体的分析。然后针对相应的问题，给出对应的实现方法VCIM，有效地在事务模型、动态依赖管理和服务状态模型三个方面提出了具体的扩展方案，有效地为微服务系统提供动态更新。下一章将结合具体的框架技术，对VCIM的系统实现进行详细的阐述和说明。
 
-更新控制模块作为系统与用户的交互工具，屏蔽系统内部服务的详细运行信息的同时，对外暴露相关的管理接口。用户可通过接口来进行服务状态的查询，以及发起相关的动态更新请求，系统可自动完成动态更新过程，无需额外的人工操作。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{支持动态更新的微服务系统实现}\label{chapter_4}
+在上一章中，VCIM具体从事务模型、动态依赖管理和服务状态模型三个方面，对支持动态更新的微服务架构进行了扩展。本章将根据第三章中提出的VCIM方法，介绍如何在开源框架Istio之上进行具体的设计，实现支持动态更新的微服务系统。
 
-\section{系统模块交互}
-上一节具体对扩展模块的内部结构及每个模块的功能进行了介绍，本节将重点描述系统运行时各个模块之间的交互关系。
+\section{系统设计概述}
+虽然当前主流的微服务框架本身对用户屏蔽了绝大多数通用功能的实现细节，但开发人员同样需要耗费大量时间与精力去学习掌握框架本身。同时，开发框架通常局限于一种或几种特定的编程语言，业务服务往往得随着框架服务的升级而升级，对支持动态更新的微服务系统实现有较大的局限性。
 
-图\ref{fig:update_sequence}展示了版本更新过程的时序图。用户在完成更新前的相关准备工作之后，向更新控制模块发起更新请求。更新控制模块向运行平台的$API~Server$发送相关资源的修改请求，而服务生命周期管理器将监听到相应的资源变化，进入相应的调谐逻辑。调谐逻辑中通过对路由规则进行更新，利用Istio框架前述的配置分发功能，对所有相关服务实例的流量代理模块进行行为配置，以驱使服务的状态完成跳转。
-
-图\ref{fig:revoke_sequence}则展示了版本撤销过程的时序图。同样由用户向更新控制模块发起撤销请求，再由服务生命周期管理器进行相应的处理。此时服务生命周期管理器将进一步与目标更新服务的事务依赖管理模块进行交互，执行前述的版本撤销算法，使得服务达到目标Freeness条件。
+Mogan于2017年在其文章中提出Service Mesh的概念\cite{morgan2017sa}。Service Mesh考虑使用边车模式 (Sidecar) ，为每一个服务实例部署一个对应的Sidecar实例，开发人员只需关注核心的业务逻辑代码，而由Sidecar实例来负责实现服务发现、负载均衡、认证授权等通用性功能\cite{li2019service,el2019guiding}。Service Mesh的架构图如图\ref{fig:service_mesh} 所示。
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 1.0\textwidth]{image/update_sequence.png}
+  \includegraphics[width= 0.7\textwidth]{image/service_mesh.png}
+  \caption{Service Mesh架构}
+  \label{fig:service_mesh}
+\end{figure}
+
+使用Service Mesh作为微服务的底层实现架构的优势主要体现在：
+
+\begin{itemize}
+	\item Service Mesh使用流量代理的方式来对具体的微服务实例进行管理，因此相关的扩展模块可以使用相同的方式来进行实现，在保证透明性的同时，对开发人员的业务代码具有较小的侵入性。
+	\item Service Mesh允许开发人员选择自身偏好的编码语言，只需保证微服务间的网络可达性即可，可适配于实际应用场景下不同类型的微服务系统。
+	\item Service Mesh架构可保证微服务与动态更新的管理模块解耦开，两者都可独立地完成升级。
+\end{itemize}
+
+当前主流的Service Mesh实现方案是Google、IBM及Lyft合作开发的Istio开源框架\cite{sheikh2018modernize,wang2019developing}。Service Mesh架构为每一个微服务实例均部署特定的网络代理，整个系统引入了大量独立运行的单机代理服务。为了更好地保障系统的整体稳定性，Istio使用集中式的控制面板，提供了统一的管理运维入口，具体架构图如图\ref{fig:istio_arch} 所示，其中：
+
+\begin{itemize}
+	\item \textbf{控制平面 (Control Plane) }~负责监听底层平台数据源，作为配置中心，将实时的配置信息动态地发往数据平面，控制整个系统的通信等各方面行为。
+	\item \textbf{数据平面 (Data Plane) }~自动注入的所有服务实例的流量代理总称，负责连接到控制平面并接收相关配置信息，然后对请求按配置进行处理，是配置规则的实际执行者。
+\end{itemize}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 1.0\textwidth]{image/istio_arch.png}
+  \caption{Istio架构图}
+  \label{fig:istio_arch}
+\end{figure}
+
+因此对VCIM的实现将基于具体的开源实现框架Istio，考虑使用与流量代理类似的方式，对事务和依赖管理进行扩展。同时，为了使用户可以方便地对系统执行动态更新等操作，在具体的应用系统之外，定义了额外的服务状态管理器和更新控制模块，为应用系统提供相应的管理功能，实现了模块间的解耦合。
+
+% 概括来说，支持动态更新的微服务系统设计目标和准则包括：\\
+
+% \begin{spacing}{1.0}
+% \end{spacing}
+
+% $\bullet$$\indent$兼容当前Service Mesh以及微服务的相关标准。在完成动态更新功能的支
+
+% $\indent$$\enspace$持后，对任何正常开发部署的微服务应用都不应造成影响。
+
+% \begin{spacing}{2.0}
+% \end{spacing}
+
+% $\bullet$$\indent$添加的相关模块应保证动态更新过程的安全性、及时性和低干扰性。即
+
+% $\indent$$\enspace$要求动态更新过程可以高效的完成，同时不会对系统中正常业务的请求
+
+% $\indent$$\enspace$造成过大的干扰，破坏系统的一致性。
+
+% \begin{spacing}{2.0}
+% \end{spacing}
+
+% $\bullet$$\indent$提供相应的动态更新管理接口，允许用户对系统中服务状态进行查询，
+
+% $\indent$$\enspace$和发起动态更新请求等操作，系统依据服务的相关状态，自动完成动
+
+% $\indent$$\enspace$态更新操作。 \\
+% \begin{spacing}{1.0}
+% \end{spacing}
+
+\section{系统扩展实现}
+本节将基于上一章提出的扩展方案，对相关的扩展模块进行实现，并且为用户提供相关的动态更新管理接口。下面将详细阐述事务依赖管理器模块$TxDepManager$、服务状态管理器模块$SvcStateManager$，以及更新控制模块$UpdateController$的内部结构设计。
+
+\subsection{事务依赖管理器}
+运行时事务信息和服务间的动态依赖信息是更新算法判断服务能否被更新的基础依据。动态依赖信息需要同特定的事务相绑定才有具体的表征意义，因此系统实现时定义了事务依赖管理器模块，统一负责对运行时事务和动态依赖进行管理。
+
+为实现VCIM中对于事务与动态依赖管理的扩展模型，我们选择在数据平面对相关模型提供支持。实现时将扩展模型打包成相关的镜像服务，在相关的文件中添加相应的配置，如图\ref{fig:injector} 所示，利用Istio框架提供的自动注入功能，在对微服务实例进行部署时，除了插入流量代理模块，还添加了对应的事务依赖管理器。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.9\textwidth]{image/injector.png}
+  \caption{注入模块配置}
+  \label{fig:injector}
+\end{figure}
+
+扩展后的某个具体的微服务实例如图\ref{fig:instance_model} 所示，其中包括了：
+
+\begin{itemize}
+	\item \textbf{流量代理}~拦截并接管所有的外来请求，生成相应的本地事务并添加或继承特定的分布式事务标识。流量代理模块一方面负责将请求分发至相应的业务逻辑模块，另一方面负责对前述的事务上下文信息进行传递。
+	\item \textbf{事务依赖管理器}~负责事务与依赖的管理，保证在事务依赖发生变更时，对相应的服务集合PAST\_SET和FUTURE\_SET等信息进行更新保存，为VCIM提供运行时事务信息和动态依赖信息。
+	\item \textbf{业务逻辑}~由服务的开发人员完成编写，从流量代理模块接收请求，执行真正的业务逻辑并返回结果，再由流量代理模块将结果进一步地返回给调用者。
+\end{itemize}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.7\textwidth]{image/instance_model.png}
+  \caption{微服务实例模型}
+  \label{fig:instance_model}
+\end{figure}
+
+其中，流量代理模块和事务依赖管理器通过UDS\footnote{https://en.wikipedia.org/wiki/Unix\_domain\_socket} (Unix Domain Socket) 进行通信，UDS通过指定同一主机上的socket文件，不需要经过网络协议栈即可完成数据的传输，效率较高。片段\ref{code:uds_client} 展示了为流量代理模块添加的UDS客户端代码片段，片段\ref{code:uds_server} 则展示了事务依赖管理器作为UDS服务端的代码片段，相关的数据总是以单向的形式发送，因此不会对流量代理模块中的请求处理分发流程造成阻塞，保证了对系统具有较低的干扰性。与此同时，流量代理模块对业务逻辑保持透明，为其屏蔽了调用方的相关细节，开发人员只需关注于业务代码，可以很好地与其它模块解耦开。
+
+\begin{lstlisting}[caption={UDS客户端}, label={code:uds_client}, style=cppStyle]
+int sock_ = socket (AF_UNIX, SOCK_STREAM, 0) ;
+if  (sock_ < 0)  {
+	perror ("opening stream socket") ;
+	exit (1) ;
+}
+struct sockaddr_un server_;
+server_.sun_family = AF_UNIX;
+std::strcpy (server_.sun_path, socket_path) ;
+int len = std::strlenn (server_.sun_path)  + sizeof (server_.sun_family) ;
+if  (connect (sock_, reinterpret_cast<struct socketaddr *>* (&server_) , len)  < 0)  {
+	close (sock_) ;
+	perror ("connecting stream socket") ;
+}
+std::string message = "ADD " + traceid + " " + spanid;
+if  (write (sock_, message.c_str () , std::strlen (message.c_str () ) )  < 0)  {
+	perror ("writinng on stream socket") ;
+} 
+close (sock_) ;
+\end{lstlisting}
+
+\begin{lstlisting}[caption={UDS服务端}, label={code:uds_server}, style=golangStyle]
+listen, err := net.Listen ("unix", SockAddr) 
+if err != nil {
+	log.Fatal ("listen error : ", err) 
+}
+if err = os.Chmod (SockAddr, 0777) ; err != nil {
+	log.Fatal (err) 
+}
+defer listen.Close () 
+
+for {
+	con, err := listen.Accept () 
+	if err != nil {
+		log.Fatal ("accept error : ", err) 
+	}
+
+	go handleServer (con) 
+}
+\end{lstlisting}
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width= 0.9\textwidth]{image/uds_client.png}
+%   \caption{UDS客户端}
+%   \label{fig:uds_client}
+% \end{figure}
+
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width= 0.9\textwidth]{image/uds_server.png}
+%   \caption{UDS服务端}
+%   \label{fig:uds_server}
+% \end{figure}
+
+\subsection{服务状态管理器}
+想要对运行于Istio框架之上的服务进行动态更新，需要对原先的服务状态模型进行了扩展，定义了对应的服务状态管理器，提供监听管理服务状态的基本功能。
+
+当前Istio框架的运行环境与容器编排系统Kubernetess\footnote{Kubernetes home page: https://kubernetes.io/}相耦合，服务以容器的形式运行在其之上。因此，服务状态管理器的实现主要利用Kubernetes中提供的自定义资源CRD (Custom Resource Definition) 功能，其实现原理称为控制器模式，如图\ref{fig:reconcile_loop} 所示。用户通过声明式命令对期望状态进行描述，控制器对比期望状态与系统实际的运行状态，如果有出入则通过自定义的调谐逻辑 (Reconcile) 驱使实际状态调整为期望状态。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.8\textwidth]{image/reconcile_loop.png}
+  \caption{控制器模式}
+  \label{fig:reconcile_loop}
+\end{figure}
+
+通过对系统中服务的概念进行抽象，定义出与服务状态相匹配的自定义资源，称之为托管服务MS (Managed Service) 。托管服务是一个抽象资源，其结构如\ref{code:managed_service} 所示，每个托管服务包含了服务名称、服务的路由版本和当前状态等信息，负责对系统中的某一服务进行管理，对应服务在系统中可能存在多个版本的运行实例。当用户主动发起对托管服务的状态变更请求，如切换新版本、撤销旧版本等请求时，托管服务的控制器将监听到相应的变化，然后将变化反映到系统具体的资源中，驱使服务向目标状态进行跳转；若出现跳转过程出现异常，调谐逻辑将重复执行，直至服务的状态跳转成功。
+
+\begin{lstlisting}[caption={托管服务结构}, label={code:managed_service}, style=golangStyle]
+// ManagedServiceSpec defines the desired state of ManagedService
+type ManagedServiceSpec struct {
+	// Name of project
+	ProjectName string `json:"projectName"`
+
+	// Name of service
+	ServiceName string `json:"serviceName"`
+
+	// Destination cluster subset for the traffic to route
+	RouteSubset string `json:"routeSubset"`
+
+	// Ports to be exposed
+	ExposePorts []int32 `json:"exposePorts,omitempty"`
+
+	// Ready to revoke obsolete subset
+	Phase UpdatePhase `json:"updatePhase,omitempty"`
+
+	// Whether the service is served as gateway entrance service
+	Gateway GatewaySpec `json:"gateway"`
+}
+\end{lstlisting}
+
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width= 0.8\textwidth]{image/managed_service.png}
+%   \caption{托管服务结构}
+%   \label{fig:managed_service}
+% \end{figure}
+
+用户通过声明式命令对托管服务进行描述，托管服务的控制器对相关的资源进行更新，包括路由规则、版本信息等，而更新后的资源将由控制面板进一步分发至对应服务的流量代理中，从而达到管理服务状态的目的。托管服务资源的定义很好地与服务状态的概念完成了匹配，对外屏蔽了内部服务的细节信息，抽象出对应的服务运行状态，对内又可以很好地对各个服务实例的状态进行管理。
+
+由前一章节对服务状态模型的讨论可知，用户对目标更新服务的动态更新操作与服务当前所处的状态存在着密不可分的关系。因此，我们将动态更新过程中的相关更新与撤销算法整合到托管服务的调谐逻辑之中，在完成动态更新中关键的版本更新和撤销操作的同时，驱使服务状态进行相应的跳转。
+
+\subsubsection{版本更新实现}
+由前述可知，当作为目标更新服务的Convertor服务处于Normal状态下时，所有向Convertor服务发起调用的请求，针对于目标更新服务Convertor都被标识为v1版本。相关流量被全部转发往v1版本，同时在其返回头信息中添加x-version: convertor-v1字段，规则示例如图\ref{fig:route_v1} 所示。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.6\textwidth]{image/route_v1.png}
+  \caption{Normal状态下的路由规则}
+  \label{fig:route_v1}
+\end{figure}
+
+用户对新版本进行上线部署工作，服务进入Deployed状态。此时，对流量代理模块中的路由规则进行修改，如图\ref{fig:prepared_v1v2} 添加基于头信息的匹配规则，规则将从上之下逐一匹配：若本次请求头信息中的x-version字段包含特定的版本信息，则将该请求转发往特定版本，对应于规则条目\ding{172}与\ding{173}；否则，默认转发往v1版本，同时在返回头信息中添加对应字段，对应规则条目\ding{174}。
+
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width= 0.5\textwidth]{image/prepared_v1v2.png}
+%   \caption{Prepared状态下的路由规则}
+%   \label{fig:prepared_v1v2}
+% \end{figure}
+
+基于前述的准备工作，只需将路由规则中的第\ding{174}条规则对应修改，将请求默认发往v2版本即可完成版本更新工作，服务进入Shifted状态，修改后的规则如图\ref{fig:shifted_v1v2} 所示。
+
+\begin{figure}
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+  \centering
+  \centerline{\includegraphics[width=1.0\textwidth]{image/prepared_v1v2.png}}
+  \caption{Prepared状态下的路由规则}
+  \label{fig:prepared_v1v2}
+  \end{minipage}
+  \begin{minipage}[t]{0.48\textwidth}
+  \centering
+  \centerline{\includegraphics[width=1.0\textwidth]{image/shifted_v1v2.png}}
+  \caption{Shifted状态下的路由规则}
+  \label{fig:shifted_v1v2}
+  \end{minipage}
+\end{figure}
+
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width= 0.5\textwidth]{image/shifted_v1v2.png}
+%   \caption{Shifted状态下的路由规则}
+%   \label{fig:shifted_v1v2}
+% \end{figure}
+
+考虑对于任意一个分布式事务T，在规则生效之后，向Convertor服务发起请求，将包括如下几种情况：
+
+\ding{172}若分布式事务T在运行的过程中还未在Convertor服务上发起过子事务，则其请求头信息中将不包含与Convertor服务相关的x-version字段。依据生效后的路由规则，此分布式事务T对于Convertor服务的请求，将被转发往新版本；
+
+\ding{173}若分布式事务T在运行的过程中曾经在Convertor服务上发起过子事务，则由前述规则可知，其请求头信息中必然包含了与Convertor服务相关的x-version字段。依据生效后的路由规则，此分布式事务T对于Convertor服务的请求，将被转发往与x-version字段具有相同标识的版本实例中；
+
+综上，保证了任一分布式事务T在运行过程中，不会在目标更新服务Convertor的不同版本实例上发起子事务，既满足了版本更新过程对于安全性的要求，同时也使得新生成的分布式事务可以较快地使用到新版本的服务。
+
+\subsubsection{版本撤销实现}
+依据版本更新算法的最新路由规则，新生成的分布式事务将被转发往新版本的服务实例，而已经调用过Convertor服务的事务会在有限时间内完成，因此旧版本服务实例会在有限时间内达到安全更新点，即不再需要执行事务，因此可被正确地执行撤销操作。具体实现包括：
+
+\begin{enumerate}
+	\item \textbf{阻塞访问}：当收到旧版本撤销请求时，为旧版本服务实例的流量代理模块添加相应的过滤器，过滤器使用特定的Lua语言进行编写，相应的代码片段展示于\ref{code:lua} 中。此过滤器将放行曾经在旧版本服务实例上发起过的子事务的请求，其头信息中的x-version字段存在特定标识信息；其余向旧版本服务实例发起调用的请求将直接返回错误。调用方将依据返回的错误码执行重试操作，依据最新的路由规则，请求便会被转发往新版本的服务实例中。
+
+\begin{lstlisting}[caption={Lua过滤器}, label={code:lua}, style=luaStyle]
+function envoy_on_request (request_handle) 
+	local found = false
+	local headers = request_handle:headers () 
+	for key, value in pairs (headers)  do
+		if  (key == "x-version" and value == "convertor-v1")  then
+			found = true
+			break
+		end
+	end
+	if not (found)  then
+		request_handle:respond ({[":status"] = "503"}, nil) 
+	end
+end
+\end{lstlisting}
+
+	% \begin{figure}[!htbp]
+	%   \centering
+	%   \includegraphics[width= 0.9\textwidth]{image/lua.png}
+	%   \caption{过滤器代码片段}
+	%   \label{fig:lua}
+	% \end{figure}
+
+	\item \textbf{同步状态}：为同步相关服务的事务状态信息，目标更新服务将以协程的方式，同时向依赖于自身的相关服务实例发起请求。当返回结果不为空时，利用互斥锁更新相应的FUTURE\_SET集合，确保多个请求同时操作同一集合的正确性，发送请求与锁机制的实现代码片段如\ref{code:collect_future} 所示。此集合代表所有将来会向目标更新服务发起请求的分布式事务标识集合。
+
+\begin{lstlisting}[caption={同步状态实现}, label={code:collect_future}, style=golangStyle]
+// Send request
+client := &http.Client{}
+resp, _ := client.Do (req) 
+defer resp.Body.Close () 
+
+futureList := []string{}
+if err = json.NewDecoder (resp.Body) .Decode (&futrueList) ; err != nil {
+  log.Printf ("Fail to decode response body : %v\n", err) 
+  errChan<-1
+  wg.Done () 
+  return
+}
+log.Printf ("Receive future list from %s : %v\n", remoteUrl, futureList) 
+if len (futureList)  != 0 {
+  // Lock
+  traceIdSet.RWLock.Lock () 
+  defer traceIdSet.RWLock.Unlock () 
+
+  _ = traceIdSet.ReceiveIncomingSet (futureList) 
+}
+wg.Done () 
+\end{lstlisting}
+
+	% \begin{figure}[!htbp]
+	%   \centering
+	%   \includegraphics[width= 0.9\textwidth]{image/collect_future.png}
+	%   \caption{同步状态实现代码片段}
+	%   \label{fig:collect_future}
+	% \end{figure}
+
+	\item \textbf{等待撤销}：利用前一步骤所得到的FUTURE\_SET集合，执行相关的判断：若接收到的FUTURE\_SET集合为空，释放占用的锁资源，等待本地事务全部结束的唤醒信号，退出循环，算法结束，如表\ref{code:future_set_empty} ；若非空，则计算此集合与请求此集合的过程中已发起的事务标识集合之差，为空则继续循环，执行前一步骤，不然等待差集中的事务向本地发起调用，如表\ref{code:future_set_not_empty} 。
+
+\begin{lstlisting}[caption={接收集合为空代码片段}, label={code:future_set_empty}, style=golangStyle]
+// Lock
+traceIdSet.RWLock.Lock () 
+if len (traceIdSet.Incoming)  == 0 {
+  // Judge if there exists local transactions
+  if len (traceIdSet.SpanidSet)  != 0 {
+    traceIdSet.DeleteFuture = true
+    traceIdSet.RWLock.Unlock () 
+
+    // Wait local transactions to be end
+    <-traceIdSet.EmptyFuture
+  } else {
+    // Unlock and break the loop
+    traceIdSet.DeleteFuture = true
+    traceIdSet.RWLock.Unlock () 
+  }
+  break
+}
+\end{lstlisting}
+
+	% \begin{figure}[!htbp]
+	%   \centering
+	%   \includegraphics[width= 0.9\textwidth]{image/future_set_empty.png}
+	%   \caption{接收集合为空代码片段}
+	%   \label{fig:future_set_empty}
+	% \end{figure}
+
+\begin{lstlisting}[caption={等待撤销代码片段}, label={code:future_set_not_empty}, style=golangStyle]
+// Lock
+traceIdSet.RWLock.Lock () 
+ids := []string{}
+for id, _ := range traceIdSet.Incoming {
+  ids = append (ids, id) 
+}
+// Compute diff
+for _, id := range ids {
+  if _, ok := traceIdSet.FutureList[id]; !ok {
+    _ = traceIdSet.AddOneFuture (id) 
+  } else {
+    _ = traceIdSet.RemoveOneFuture (id) 
+  }
+}
+log.Printf ("Current future list : %v\n", traceIdSet.FutureList) 
+if len (traceIdSet.FutureList)  != 0 {
+  traceIdSet.DeleteFuture = true
+  traceIdSet.RWLock.Unlock () 
+} else {
+  // Diff is empty and continue next loop
+  traceIdSet.RWLock.Unlock () 
+  traceIdSet.EmptyFuture<-1
+}
+\end{lstlisting}
+
+% 	\begin{figure}[!htbp]
+% 	  \centering
+% 	  \includegraphics[width= 0.9\textwidth]{image/future_set_not_empty.png}
+% 	  \caption{等待撤销代码片段}
+% 	  \label{fig:future_set_not_empty}
+% 	\end{figure}
+\end{enumerate}
+
+\subsection{更新控制模块}
+前述的相关模块为系统提供了支持动态更新的核心能力，为使系统具有更好的操作性，本节定义了更新控制模块。
+
+更新控制模块作为系统与用户的交互工具，屏蔽系统内部服务的详细运行信息的同时，对外暴露相关的管理接口。用户可通过接口来进行服务状态的查询，以及发起相关的动态更新请求，系统可自动完成动态更新过程，无需额外的人工操作。片段\ref{code:ms_curd} 展示了更新控制模块对于托管服务的部分管理接口。
+
+
+\begin{lstlisting}[caption={部分接口示例}, label={code:ms_curd}, style=golangStyle]
+func (h *APIHandler) ListManagedServices(w ResponseWriter, r *Request) {}
+
+func (h *APIHandler) CreateManagedService(w ResponseWriter, r *Request) {}
+
+func (h *APIHandler) DeleteManagedService(w ResponseWriter, r *Request) {}
+
+func (h *APIHandler) UpdateManagedService(w ResponseWriter, r *Request) {}
+\end{lstlisting}
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width= 1.0\textwidth]{image/ms_curd.png}
+%   \caption{部分接口示例}
+%   \label{fig:ms_curd}
+% \end{figure}
+
+\section{系统模块交互}
+上一节具体对扩展模块的内部结构及每个模块的功能进行了介绍，系统的整体架构图如\ref{fig:sys_arch} 所示。本节将重点描述系统运行时各个模块之间的交互关系。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 1.0\textwidth]{image/sys_arch.png}
+  \caption{系统整体架构图}
+  \label{fig:sys_arch}
+\end{figure}
+
+图\ref{fig:update_sequence} 展示了版本更新过程的时序图。用户在完成更新前的相关准备工作之后，向更新控制模块发起更新请求。更新控制模块向运行平台Kubernetes中的$API~Server$发送相关资源的修改请求，而服务状态管理器将监听到相应的资源变化，进入相应的调谐逻辑。调谐逻辑中通过对路由规则进行更新，利用Istio框架前述的配置分发功能，对所有相关服务实例的流量代理模块进行行为配置，以驱使服务的状态完成跳转。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.9\textwidth]{image/update_sequence.png}
   \caption{版本更新时序图}
   \label{fig:update_sequence}
 \end{figure}
 
+图\ref{fig:revoke_sequence} 则展示了版本撤销过程的时序图。同样由用户向更新控制模块发起撤销请求，再由服务状态管理器进行相应的处理。此时服务状态管理器将进一步与目标更新服务的旧版本实例中的事务依赖管理模块进行交互，执行前述的版本撤销算法，满足条件后完成相应的版本撤销操作。
+
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 1.0\textwidth]{image/revoke_sequence.png}
+  \includegraphics[width= 0.9\textwidth]{image/revoke_sequence.png}
   \caption{版本撤销时序图}
   \label{fig:revoke_sequence}
 \end{figure}
 
 \section{本章小结}
-本章基于前一章节所提出的VCIM方法，实现支持动态更新的微服务系统。首先，我们对系统的设计实现进行了概述，对系统的设计目标和准则进行了说明。然后本章对三个扩展模块的实现及其模块内部结构进行了详细的介绍，其中包括事务依赖管理器如何对事务进行拦截和管理，为系统支持动态更新提供基础信息；服务生命周期管理器如何对服务的状态进行扩展，版本更新和版本撤销算法如何完成整合，保证动态更新过程的一致性；更新控制模块如何完成用户与系统间的解耦，为用户提供相关的更新管理功能。最后，重点介绍了系统运行时各个模块间的交互关系。
+本章基于前一章节所提出的VCIM方法，实现支持动态更新的微服务系统。首先，我们对系统的设计实现进行了概述。然后本章对三个扩展模块的实现及其模块内部结构进行了详细的介绍，其中包括事务依赖管理器如何对事务进行拦截和管理，为系统支持动态更新提供基础信息；服务状态管理器如何对服务的状态进行监听管理，版本更新和版本撤销算法如何完成整合，保证动态更新过程的安全性和及时性；更新控制模块如何完成用户与系统间的解耦，为用户提供相关的更新管理功能。最后，重点介绍了系统运行时各个模块间的交互关系。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{案例研究与实验评估}\label{chapter_experiments}
-为了验证前述的微服务动态更新系统实现方案是否满足动态更新过程的相关准则，本章将利用一个实际场景下的分布式微服务系统进行实验。实验将针对不同的动态更新算法，同时在特定算法实验中对多个服务进行动态更新，在安全性、及时性和干扰性三个方面的性能进行评估和比较。
+\chapter{实验评估与应用展示}\label{chapter_experiments}
+为了验证前述的微服务动态更新系统实现方案是否满足动态更新过程的相关准则，本章将利用一个实际场景下的分布式微服务系统进行实验。在本章的实验中，VCIM算法将对应于本文所提出的VCIM方法，作为一种特定的动态更新算法，与其它的动态更新算法一起作为具体的实验对比算法。同时在特定的实验中对多个服务进行动态更新，具体在安全性、及时性和干扰性三个方面进行不同算法性能的评估和比较。最后，利用台风演示系统的前端界面对应用的动态更新过程进行了具体的展示。
 
-\section{案例介绍}
-这里使用的分布式微服务系统，是一个面向开发日的台风演示系统。该系统模拟2018年的第18号台风Rumbia，将台风从生成发展到最后结束的运行轨迹进行展示，同时系统通过对雨情和风情的相关服务进行查询，整合了台风及其途径城市的详细信息，为用户提供展示功能。具体来说，用户可通过该演示系统，直观地看到当前台风的运行轨迹。当台风的影响范围波及某个具体的城市时，系统将对所在城市的相关雨情和风情服务进行查询，并进行展示预警。该系统的静态依赖关系如图\ref{fig:typhoon_example}所示：
+\section{应用介绍}
+这里使用的分布式微服务系统，是一个台风演示系统。该系统模拟2018年的第18号台风Rumbia，将台风从生成发展到最后结束的运行轨迹进行展示，同时系统通过对雨情和风情的相关服务进行查询，整合了台风及其途径城市的详细信息，为用户提供展示功能。具体来说，用户可通过该演示系统，直观地看到当前台风的运行轨迹。当台风的影响范围波及某个具体的城市时，系统将对所在城市的相关雨情和风情服务进行查询，并进行展示预警。该系统的静态依赖关系如图\ref{fig:typhoon_example} 所示：
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width= 1.0\textwidth]{image/typhoon_example.png}
+  \includegraphics[width= 0.9\textwidth]{image/typhoon_example.png}
   \caption{台风系统静态依赖关系图}
   \label{fig:typhoon_example}
 \end{figure}
 
-台风演示系统中，部分主要服务提供的功能如下：\\
+台风演示系统中，部分主要服务提供的功能如下：
 
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item \textbf{Backend}$\indent$服务负责整合包括台风强度、位置等详细信息，以及途径影响城市的具体信息。
+	\item \textbf{RainController}$\indent$服务负责整合所有台风波及城市具体的雨情信息。
+	\item \textbf{WindController}$\indent$服务负责整合所有台风波及城市具体的风情信息。
+	\item \textbf{Typhoon}$\indent$服务负责提供台风当前的详细信息，包括经纬度位置、强度和速度等。
+	\item \textbf{xx-Rain (Wind) }$\indent$服务负责具体xx城市的雨情 (风情) 信息。
+\end{itemize}
 
-$\bullet$$\indent$\textbf{Backend}$\indent$服务负责整合包括台风强度、位置等详细信息，以及途径影响城
-
-$\indent$$\enspace$市的具体信息。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{RainController}$\indent$服务负责整合所有台风波及城市具体的雨情信息。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{WindController}$\indent$服务负责整合所有台风波及城市具体的风情信息。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{Typhoon}$\indent$服务负责提供台风当前的详细信息，包括经纬度位置、强度和速
-
-$\indent$$\enspace$度等。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$$\indent$\textbf{xx-Rain(Wind)}$\indent$服务负责具体xx城市的雨情(风情)信息。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
-
-服务间的交互时序图如图\ref{fig:typhoon_sequence}所示(已省略去部分非关键服务)：
+服务间的交互时序图如图\ref{fig:typhoon_sequence} 所示 (已省略去部分非关键服务) ：
 
 \begin{figure}[!htbp]
   \centering
@@ -1452,57 +1165,43 @@ $\bullet$$\indent$\textbf{xx-Rain(Wind)}$\indent$服务负责具体xx城市的�
 \subsection{实验环境}
 我们将使用上述的台风演示系统来对本文实现的动态更新技术进行评估，为了更好地模拟真实场景下的分布式微服务系统，本次实验将台风演示系统中的16个服务部署于Kubernetes系统之上，由其进行容器运行时的编排，具体的环境配置为：
 
-物理节点机器硬件配置：24核 2.5GHz CPU，64GB内存，1T硬盘，千兆以太网卡
+物理节点机器硬件配置：24核 2.5GHz CPU，64GB内存，1T硬盘，千兆以太网卡。
 
-软件环境配置：Ubuntu 20.04.1 LTS，Kubernetes v1.17.14
+软件环境配置：Ubuntu 20.04.1 LTS，Kubernetes v1.17.14。
 
 \subsection{实验设计}\label{sec:experiment_design}
-在台风演示系统的实际运行中，多个服务均有相应的更新需求：\\
+在台风演示系统的实际运行中，多个服务均有相应的更新需求：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$1.$$\indent$Typhoon服务可能需要通过更新来更新数据或修复错误。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$2.$$\indent$RainController、WindController服务可能需要通过更新来整合更多的城市
-
-$\indent$$\enspace$服务信息。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$3.$$\indent$xx-Rain(Wind)服务可能需要通过更新来引入新的信息提供方式。 \\
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{enumerate}
+	\item Typhoon服务可能需要通过更新来更新数据或修复错误。
+	\item RainController、WindController服务可能需要通过更新来整合更多的城市服务信息。
+	\item xx-Rain (Wind) 服务可能需要通过更新来引入新的信息提供方式。
+\end{enumerate}
 
 对于上述需求，系统开发人员希望能够在完成代码的改动之后，不停止系统运行的前提下，完成目标服务的动态更新。
 
-服务间的静态依赖关系如\ref{fig:typhoon_example}所示，其中Typhoon服务在实验案例中处于整个调用层次的第三层，可在其之上发起子事务的服务包括RainController和WindController，整个分布式事务的根事务在Backend服务上发起，因此四个服务的调用关系近似形成一个“菱形”的关系。对于Quiescence算法来说，当Typhoon服务需要进行动态更新时，需要保证EPS(Typhoon)集合中的所有服务均属于Passive状态，即Backend、RainController、WindController都必须达到Passive状态，显然这将对系统造成很大的干扰，并且更新所耗费的时间也会很长，对应于动态更新的干扰性和及时性。而对于VCIM算法来说，只需依据Typhoon服务上事务的相关信息以及同步相关服务上事务的运行状态，即可完成动态更新。因此选择Typhoon服务进行动态更新可以有效地评估不同更新算法的及时性和干扰性。另一方面，对于常见的微服务部署方案来说，其考虑新版本服务的快速部署更新，对应的算法为直接切换版本算法(Direct)。若Typhoon服务需要进行动态更新，系统会在新版本服务就绪后，直接进行版本切换更新，显然，若更新的时机发生在RainController发生之后，且在开始调用WindController之前，那么本次更新将导致系统出现不一致的情况，而Quiescence和VCIM则不会出现不一致的情况，对Typhoon服务进行更新对验证各个算法的安全性具有实际意义。因此在进行单个服务更新实验中，将选择Typhoon服务作为目标更新服务。
+服务间的静态依赖关系如\ref{fig:typhoon_example} 所示，其中Typhoon服务在实验案例中处于整个调用层次的第三层，可在其之上发起子事务的服务包括RainController和WindController，整个分布式事务的根事务在Backend服务上发起，因此四个服务的调用关系近似形成一个“菱形”的关系。对于Quiescence算法来说，当Typhoon服务需要进行动态更新时，需要保证EPS (Typhoon) 集合中的所有服务均属于Passive状态，即Backend、RainController、WindController都必须达到Passive状态，显然这将对系统造成很大的干扰，并且更新所耗费的时间也会很长，对应于动态更新的干扰性和及时性。而对于VCIM算法来说，只需依据Typhoon服务上事务的相关信息以及同步相关服务上事务的运行状态，即可完成动态更新。因此选择Typhoon服务进行动态更新可以有效地评估不同更新算法的及时性和干扰性。另一方面，对于常见的微服务部署方案来说，其考虑新版本服务的快速部署更新，对应的算法为直接切换版本算法 (Direct) 。若Typhoon服务需要进行动态更新，系统会在新版本服务就绪后，直接进行版本切换更新，显然，若更新的时机发生在RainController发生之后，且在开始调用WindController之前，那么本次更新将导致系统出现不一致的情况，而Quiescence和VCIM则不会出现不一致的情况，对Typhoon服务进行更新对验证各个算法的安全性具有实际意义。因此在进行单个服务更新实验中，将选择Typhoon服务作为目标更新服务。
 
-在具体的应用场景下，系统内不同的微服务可能由独立的团队来开发管理，因此多个服务可能同时存在更新需求。为了验证本文实现方法的有效性以及服务生命周期模型的独立性，将同时对系统中多个服务进行更新，多服务更新实验中选择WindController服务和Typhoon服务作为目标更新服务。
+在具体的应用场景下，系统内不同的微服务可能由独立的团队来开发管理，因此多个服务可能同时存在更新需求。为了验证本文实现方法的有效性以及服务状态模型的独立性，将同时对系统中多个服务进行更新，多服务更新实验中选择WindController服务和Typhoon服务作为目标更新服务。
 
 在具体的实验设置方面，将<算法，请求间隔，实验目标>称为一组实验，其中算法包括Quiescence、VCIM、VCIM-MUL和相应的基准算法，其中Quiescence算法与具体更新的服务数量无关，而VCIM和VCIM-MUL则分别表示应用VCIM对单个服务和多个服务进行更新；请求间隔包括1500ms、750ms、500ms、300ms、150ms、100ms，请求间隔表示系统收到请求的时间间隔，用来表征系统的负载状况，请求间隔越小说明系统负载越大；实验目标则包括了安全性、及时性和干扰性三个方面。
 
-针对每一组实验，将分别独立地进行5次。每次实验将依据对应的请求间隔，不断地向系统发起请求，一共发送80次，同时在第20个请求处，向系统中的目标更新服务发起动态更新请求。在单服务更新实验中，仅在第20个请求处，额外向系统发起一次动态更新请求；而在多服务更新实验中，在第20个请求处，针对不同的目标更新服务，额外向系统发起两次动态更新请求。此时可以保证系统中已经存在多个运行时分布式事务，可以更好地模拟真实状态下的分布式微服务系统，确保实验的合理性和公平性。
+针对每一组实验，将分别独立地进行10次。每次实验将依据对应的请求间隔，不断地向系统发起请求，一共发送80次，同时在第20个请求处，向系统中的目标更新服务发起动态更新请求。在单服务更新实验中，仅在第20个请求处，额外向系统发起一次动态更新请求；而在多服务更新实验中，在第20个请求处，针对不同的目标更新服务，额外向系统发起两次动态更新请求。此时可以保证系统中已经存在多个运行时分布式事务，可以更好地模拟真实状态下的分布式微服务系统，确保实验的合理性和公平性。
 
 \section{实验分析}
-在实际的应用系统中，当运维人员尝试对其中的服务进行动态更新时，动态更新的前后系统的运行时事务是否安全、更新所需要耗费的时间以及整个更新过程对系统会造成多大的干扰，这些都是其评价动态更新算法的重要标准。因此本章的实验将从安全性(Safety)、及时性(Timeliness)和干扰性(Disruption)三个方面，进行具体的评测。
+在实际的应用系统中，当运维人员尝试对其中的服务进行动态更新时，动态更新的前后系统的运行时事务是否安全、更新所需要耗费的时间以及整个更新过程对系统会造成多大的干扰，这些都是其评价动态更新算法的重要标准。因此本章的实验将从安全性 (Safety) 、及时性 (Timeliness) 和干扰性 (Disruption) 三个方面，进行具体的评测。
 
-\subsection{安全性(Safety)}
+\subsection{安全性 (Safety) }
 安全性表示在服务进行动态更新的过程前后，系统处理正在运行时的事务和后续将要发生的事务都应满足一致性，即逻辑正确性。不同的动态更新算法对于安全更新点的定义各不相同，因此对于安全性的满足也并不一致。
 
-安全性实验针对前述的三种动态更新算法，分别按照对应的实验设置来进行。例如实验<Direct，1500ms，安全性>表示使用直接切换版本算法进行安全性的实验，模拟的用户请求间隔为1500ms。实验中记录的结果为动态更新过程中出现不一致的用户请求数量，用来表示该算法是否满足安全性。实验结果如表\ref{table:safety_result}所示。
+安全性实验针对前述的三种动态更新算法，分别按照对应的实验设置来进行。例如实验<Direct，1500ms，安全性>表示使用直接切换版本算法进行安全性的实验，模拟的用户请求间隔为1500ms。实验中记录的结果为动态更新过程中出现不一致的用户请求数量，用来表示该算法是否满足安全性。实验结果如表\ref{table:safety_result} 所示。
 
 \begin{table}
   \centering
   \begin{tabular}{c|c|c|c|c|c|cp{20mm}}
     %\toprule
     \hline
-    \textbf{请求间隔(ms)} & 1500 & 750 & 500 & 300 & 150 & 100 \\
+    \textbf{请求间隔 (ms) } & 1500 & 750 & 500 & 300 & 150 & 100 \\
     \midrule
     \hline
     Direct  & 5 &  8  & 12 & 16 & 33 & 50 \\
@@ -1523,12 +1222,12 @@ $3.$$\indent$xx-Rain(Wind)服务可能需要通过更新来引入新的信息提
 
 由于直接切换版本算法无法保证动态更新的安全性，因此在后续及时性和干扰性的实验中，我们将仅对Quiescence和实现的VCIM、VCIM-MUL进行实验。
 
-\subsection{及时性(Timeliness)}
+\subsection{及时性 (Timeliness) }
 及时性表示服务从收到动态更新请求到真正完成动态更新所需要的时间。及时性用于反映动态更新算法的效率，及时性越高对应的服务到达安全更新点所耗费的时间越短，即可以更快地完成动态更新。
 
 在单服务更新的及时性实验中，对于每一组实验都分别记录下服务收到动态更新请求的时间，记为开始时间$time_0$，以及对应完成动态更新的时间，记为结束时间$time_1$，则该组及时性实验的计算结果为$time_1 - time_0$。而在多服务更新的及时性实验中，开始时间$time_0$为两个服务中较早收到动态更新请求的时间，结束时间$time_1$为两个服务中较晚完成动态更新的时间，该组及时性实验的计算结果同样为$time_1 - time_0$。每组实验将独立重复多次进行，通过对多次实验结果进行求和平均，便可得到该组实验的及时性实验结果。
 
-实验结果如图\ref{fig:timeliness}所示。从图中可以看出，两种算法更新目标服务所需要耗费的时间都随系统负载的增加而增加。对于同一系统负载的情况下，Quiescence算法要求的安全点较为严格，更新所耗费的时间较长。而本文中实现的VCIM和VCIM-MUL所耗费的更新时间则要少一些，优于Quiescence算法。同时比较VCIM和VCIM-MUL，可以看出同时更新多个服务并未对更新的及时性造成较大的影响。
+实验结果如图\ref{fig:timeliness} 所示。从图中可以看出，两种算法更新目标服务所需要耗费的时间都随系统负载的增加而增加。对于同一系统负载的情况下，Quiescence算法要求的安全点较为严格，更新所耗费的时间较长。而本文中实现的VCIM和VCIM-MUL所耗费的更新时间则要少一些，优于Quiescence算法。同时比较VCIM和VCIM-MUL，可以看出同时更新多个服务并未对更新的及时性造成较大的影响。
 
 \begin{figure}[!htbp]
   \centering
@@ -1537,12 +1236,12 @@ $3.$$\indent$xx-Rain(Wind)服务可能需要通过更新来引入新的信息提
   \label{fig:timeliness}
 \end{figure}
 
-\subsection{干扰性(Disruption)}
-干扰性表示应用动态更新算法给系统正常处理用户请求所导致的中断程度，即相较于没有动态更新请求下，动态更新过程对系统处理用户请求额外增加的时间。某种动态更新算法的干扰性越小，表明该算法更为透明高效。干扰性实验的结果可包括：总干扰性(Total Disruption)，平均干扰性(Average Disruption)。
+\subsection{干扰性 (Disruption) }
+干扰性表示应用动态更新算法给系统正常处理用户请求所导致的中断程度，即相较于没有动态更新请求下，动态更新过程对系统处理用户请求额外增加的时间。某种动态更新算法的干扰性越小，表明该算法更为透明高效。干扰性实验的结果可包括：总干扰性 (Total Disruption) ，平均干扰性 (Average Disruption) 。
 
-由于需要计算动态更新算法导致额外增加的时间，因此干扰性实验只对受更新影响的分布式事务进行计算。对于某一个分布式事务，其受更新影响当前仅当对应的事务生命周期与服务进行更新的时间段相互重叠。在进行干扰性实验时，首先进行基准组实验，即在没有更新请求的状态下，系统正常处理用户请求的响应时间，重复多次后计算得到平均的响应时间，记为$time_0$。然后对于使用特定更新算法的第j次实验中，统计所有受更新影响的用户请求(分布式事务)的数量，记为$count_j$，以及这些请求对应的响应时间，记为$time_i$。该组实验共进行多次，对应的总干扰性计算结果为：$TotalDisruption = \sum_{j=1}^{5}\sum_{i=1}^{count_j}(time_i - count_j \cdot time_0)$，对应的平均干扰性计算结果为：$AverageDisruption = TotalDisruption / (\sum_{j=1}^{5}count_j)$，其中$count_j$表示在第j次实验中，受更新影响的事务的总数量。
+由于需要计算动态更新算法导致额外增加的时间，因此干扰性实验只对受更新影响的分布式事务进行计算。对于某一个分布式事务，其受更新影响当前仅当对应的事务生命周期与服务进行更新的时间段相互重叠。在进行干扰性实验时，首先进行基准组实验，即在没有更新请求的状态下，系统正常处理用户请求的响应时间，重复多次后计算得到平均的响应时间，记为$time_0$。然后对于使用特定更新算法的第j次实验中，统计所有受更新影响的用户请求 (分布式事务) 的数量，记为$count_j$，以及这些请求对应的响应时间，记为$time_i$。该组实验共进行多次，对应的总干扰性计算结果为：$TotalDisruption = \sum_{j=1}^{10}\sum_{i=1}^{count_j} (time_i - count_j \cdot time_0) $，对应的平均干扰性计算结果为：$AverageDisruption = TotalDisruption /  (\sum_{j=1}^{10}count_j) $，其中$count_j$表示在第j次实验中，受更新影响的事务的总数量。
 
-总干扰性和平均干扰性的实验结果分别如图\ref{fig:total_disruption}、图\ref{fig:average_disruption}所示。从干扰性实验结果可以明显看出，由于Quiescence算法在更新过程中需要阻塞外来请求，因此对系统造成的干扰程度较大。而VCIM和VCIM-MUL可以显著降低更新过程对系统的影响，明显优于Quiescence算法。比较VCIM和VCIM-MUL，两者都未对系统造成显著的干扰，表示更新服务的数量对于系统的干扰性较小。
+总干扰性和平均干扰性的实验结果分别如图\ref{fig:total_disruption} 、图\ref{fig:average_disruption} 所示。从干扰性实验结果可以明显看出，由于Quiescence算法在更新过程中需要阻塞外来请求，因此对系统造成的干扰程度较大。而VCIM和VCIM-MUL可以显著降低更新过程对系统的影响，明显优于Quiescence算法。比较VCIM和VCIM-MUL，两者都未对系统造成显著的干扰，表示更新服务的数量对于系统的干扰性影响较小。
 
 \begin{figure}[!htbp]
   \centering
@@ -1569,79 +1268,77 @@ $3.$$\indent$xx-Rain(Wind)服务可能需要通过更新来引入新的信息提
 
 与此同时，在VCIM算法的实验中，分别进行了单服务更新和多服务更新实验，验证了VCIM算法对于多服务同时更新的支持以及算法的有效性。
 
+\section{应用展示}
+前述台风演示系统通过具体的前端界面，展示从后端所得到的整合信息，图\ref{fig:running_v1} 展示了某一时刻的系统运行状态。从图中用户可以直观地看到台风的运行轨迹，当前位置的详细信息以及波及城市的相关信息。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.8\textwidth]{image/running_v1.png}
+  \caption{系统运行状态图}
+  \label{fig:running_v1}
+\end{figure}
+
+由于开发人员在实现编码时考虑不周，对台风索引信息处理不当，前端台风信息无法形成正确的闭环路径，导致了路径无法被正确地清除。图\ref{fig:running_error} 展示了因旧版本Typhoon服务所导致的错误路径。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.8\textwidth]{image/running_error.png}
+  \caption{错误路径状态图}
+  \label{fig:running_error}
+\end{figure}
+
+为了修复旧版本Typhoon服务的缺陷，开发人员希望能够在保证系统安全性的前提下，对Typhoon服务进行动态更新。因此，开发人员首先需要完成代码版本的修复并推送到远端。然后，通过系统的前端控制器查看系统的运行状态与相关信息，如图\ref{fig:frontend} 展示了前端控制器的相关模块，其中左侧是当前台风系统所包含的所有微服务仓库列表，中间对应当前系统内服务的调用拓扑图，而通过点击左侧的某一服务，便可在右侧查看其对应的所有代码版本以及当前正在使用的版本。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.8\textwidth]{image/update_start.png}
+  \caption{前端模块展示}
+  \label{fig:frontend}
+\end{figure}
+
+图\ref{fig:frontend} 中，开发人员可在右侧的版本树中点击选择刚刚提交的代码版本标识，向更新控制器发起动态更新请求。系统在收到动态更新请求后，将在后台拉取Typhoon服务对应版本的代码，执行代码的编译操作，打包并在系统中完成部署，最后应用本文所提出的VCIM方法，将流量正确地切换到新版本的Typhoon服务中，并执行旧版本实例的撤销操作。图\ref{fig:update_end} 展示了Typhoon服务动态更新成功，而图\ref{fig:running_v2} 则展示了运行新版本Typhoon服务的系统运行状态图，台风路径可以被正确消除。
+
+可以看出，系统依据服务的相关状态自动完成服务的动态更新过程，无需额外的人工操作，Typhoon服务的缺陷被修复的同时保证了系统的持续可用。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.8\textwidth]{image/update_end.png}
+  \caption{动态更新结束}
+  \label{fig:update_end}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width= 0.8\textwidth]{image/running_v2.png}
+  \caption{正确路径状态图}
+  \label{fig:running_v2}
+\end{figure}
+
 \section{本章小结}
-本章首先对一个实际场景下的分布式微服务系统进行介绍和分析，然后基于此案例进行了相应的动态更新实验。实验通过分析并选取了系统中合适的目标更新服务，重点对各个动态更新算法在安全性、及时性和干扰性三个方面进行了比较，实验中还针对实际应用的需求，添加了同时对多个服务进行更新的相关实验，并对实验结果进行了解释说明，得出了相应的实验结论。
+本章首先对一个实际场景下的分布式微服务系统进行介绍和分析，然后基于此案例进行了相应的动态更新实验。实验通过分析并选取了系统中合适的目标更新服务，重点对各个动态更新算法在安全性、及时性和干扰性三个方面进行了比较，实验中还针对实际应用的需求，添加了同时对多个服务进行更新的相关实验，并对实验结果进行了解释说明，得出了相应的实验结论。最后，利用台风演示系统的前端界面对应用的动态更新过程进行了具体的展示。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 学位论文的正文应以《结论》作为最后一章
 \chapter{总结与展望}\label{chapter_concludesion}
 
 \section{工作总结}
-本文首先探讨了基于微服务架构的软件开发技术在企业级应用中的重要性。但随着互联网和软件技术的发展，软件运行环境和用户的需求也在不断地变化，微服务系统变得多元复杂且难以维护，因此微服务系统对于动态更新的支持显得尤为重要。本文首先对现有的软件动态更新算法以及它们在安全性、及时性和干扰性方面的表现进行了介绍，并讨论了当前微服务框架和架构在动态更新方面的支持。接着，针对当前微服务架构在动态更新支撑方面的不足，本文对支持动态更新的分布式微服务系统所面临的需求与挑战进行了分析，对应在事务模型、动态依赖管理以及服务生命周期三个方面提出了具体的扩展模型，并选择了Service Mesh作为底层实现架构，给出了一种支持事务一致性的微服务动态更新方法。然后依据此方法，在具体的Istio框架上完成了系统的设计与实现。最后，通过实际的应用案例对此动态更新方法和相关更新算法进行了实验对比，验证了此方法在更新过程中的安全性、及时性和低干扰性，以及对多个服务同时进行更新的可行性。
+本文首先探讨了基于微服务架构的软件开发技术在工业界应用中的重要性。但随着互联网和软件技术的发展，软件外部运行环境和对应的需求也在不断地变化，微服务系统变得多元复杂且难以维护，因此微服务系统对于动态更新的支持显得尤为重要。本文首先对现有的软件动态更新算法以及它们在安全性、及时性和干扰性方面的表现进行了介绍，并讨论了当前微服务框架和架构在动态更新方面的支持。接着，针对当前微服务架构在动态更新支撑方面的不足，本文对支持动态更新的分布式微服务系统所面临的问题进行了分析，给出了一种面向版本一致性的微服务动态更新方法，对应在事务模型、动态依赖管理以及服务状态三个方面进行了扩展与实现。然后依据此方法，在具体的Istio框架上完成了系统的设计与实现。最后，通过实际的应用案例对此动态更新方法和相关更新算法进行了实验对比，验证了此方法在更新过程中的安全性、及时性和低干扰性，以及对多个服务同时进行更新的可行性，并对应用进行了展示。
 
-本文的主要贡献总结如下：\\
+本文的主要贡献总结如下：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$\bullet$分析当前主流微服务系统框架在动态更新支撑方面的不足，针对性地提
-
-$\indent\enspace$出了一种支持事务一致性的微服务动态更新的实现方法。该方法选择在 
-
-$\indent\enspace$Service Mesh架构上，对事务模型、动态依赖管理和服务生命周期三个方
-
-$\indent\enspace$面进行了具体的扩展，为具体的动态更新过程提供运行时支持。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$基于上述的实现方法，在Service Mesh的开源实现框架Istio之上完成了
-
-$\indent\enspace$模型的扩展，并且提供了相关的动态更新管理接口，支持服务运行时的
-
-$\indent\enspace$动态更新。同时系统保证动态更新过程的安全性、及时性和低干扰性，
-
-$\indent\enspace$模块之间具有较低的耦合度。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$\bullet$利用实际的应用案例，应用上述实现方法并进行实验评估，使用不同的
-
-$\indent\enspace$更新算法，主要对动态更新过程中各个算法的安全性(Safety)、及时性
-
-$\indent\enspace$(Timeliness)、干扰性(Disruption)进行了性能比较，实验中还包括了对多
-
-$\indent$$\enspace$个服务同时进行更新，验证了上述实现方法对多服务同时更新的支持。
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{itemize}
+	\item 提出了一种面向版本一致性的微服务动态更新实现方法，有针对性地弥补了当前主流微服务系统框架在动态更新支撑方面的不足。该方法在事务模型、动态依赖管理和服务状态模型三个方面进行了具体的扩展，为具体的动态更新过程提供运行时支持。
+	\item 基于上述的实现方法，在Service Mesh的开源实现框架Istio之上完成了系统的设计与实现，并且提供了相关的动态更新管理接口，支持服务运行时的动态更新。同时系统保证动态更新过程的安全性、及时性和低干扰性，模块之间具有较低的耦合度。
+	\item 利用实际的应用案例，应用上述实现方法并进行实验评估，使用不同的更新算法，主要对动态更新过程中各个算法的安全性 (Safety) 、及时性 (Timeliness) 、干扰性 (Disruption) 进行了性能比较，实验中还包括了对多个服务同时进行更新，验证了上述实现方法对多服务同时更新的支持。
+\end{itemize}
 
 \section{研究展望}
-本文探讨了微服务架构在动态更新支持方面的不足，给出了一种支持事务一致性的微服务动态更新实现方法，并且在具体的开源框架Istio上进行了模型的扩展和实现，并通过具体的实验验证了此方法的可行性和有效性。然而，还有很多具体的工作需要进一步的研究：\\
+本文探讨了微服务架构在动态更新支持方面的不足，给出了一种面向版本一致性的微服务动态更新实现方法，并且在具体的开源框架Istio上进行了模型的扩展和实现，并通过具体的实验验证了此方法的可行性和有效性。然而，还有很多具体的工作需要进一步的研究：
 
-\begin{spacing}{1.0}
-\end{spacing}
-
-$1.$对于真实网络环境下的分布式微服务系统，消息的发送与处理都有可能
-
-$\indent\enspace$出现异常，但本文所定义的相关模型均基于如下假设：消息能够正确无
-
-$\indent\enspace$异常地完成传输。在未来的工作中，我们将对相关的异常情况进行考虑
-
-$\indent\enspace$，对模型进行完善。
-
-\begin{spacing}{2.0}
-\end{spacing}
-
-$2.$在真实运行环境中，节点可能在任意时刻出现崩溃，若目标更新服务运
-
-$\indent\enspace$行于之上则更新过程将出现错误。在后续工作中，我们将考虑更新过程
-
-$\indent\enspace$发生错误的回滚机制，使得系统在动态更新方面具有更好的健壮性。
-
-\begin{spacing}{1.0}
-\end{spacing}
+\begin{enumerate}
+	\item 对于真实网络环境下的分布式微服务系统，消息的发送与处理都有可能出现异常，但本文所定义的相关模型均基于如下假设：消息能够正确无异常地完成传输。在未来的工作中，我们将对相关的异常情况进行考虑，对模型进行完善。
+	\item 在真实运行环境中，节点可能在任意时刻出现崩溃，若目标更新服务运行于之上则更新过程将出现错误。在后续工作中，我们将考虑更新过程发生错误的回滚机制，使得系统在动态更新方面具有更好的健壮性。
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 致谢，应放在《结论》之后
@@ -1650,7 +1347,7 @@ $\indent\enspace$发生错误的回滚机制，使得系统在动态更新方面
 
   感谢我的导师曹春教授。在我读研期间，曹老师一直关心我的科研和生活。本文从选题、成文到修改都离不开曹老师的耐心指导。曹老师对待学术严谨执着，待人和善，平时非常关心学生的生活状况和身体健康。他的谆谆教诲使我受益匪浅。
 
-  感谢吕建教授、马晓星教授、陶先平教授、徐峰教授、许畅教授、黄宇教授、胡昊副教授、余萍副教授、徐经纬副教授、姚远副教授、张建莹老师等所有关心和帮助过我的老师。
+  感谢吕建教授、马晓星教授、陶先平教授、徐锋教授、许畅教授、黄宇教授、胡昊副教授、余萍副教授、姚远副教授、李樾副教授、徐经纬老师、张建莹老师等所有关心和帮助过我的老师。
 
   感谢实验室的所有同学，良好的学习氛围是我顺利完成科研项目的保障，能够和你们一起学习和工作让我感到非常荣幸。
 
@@ -1663,324 +1360,7 @@ $\indent\enspace$发生错误的回滚机制，使得系统在动态更新方面
 % 附录
 \appendix
 
-% \chapter{博士(硕士)学位论文编写格式规定(试行)}
-
-% \section{适用范围}
-
-% 本规定适用于博士学位论文编写，硕士学位论文编写应参照执行。
-
-% \section{引用标准}
-
-% GB7713科学技术报告、学位论文和学术论文的编写格式。
-
-% GB7714文后参考文献著录规则。
-
-% \section{印制要求}
-
-% 论文必须用白色纸印刷，并用A4(210mm×297mm)标准大小的白纸。纸的四周应留足空白
-% 边缘，上方和左侧应空边25mm以上，下方和右侧应空边20mm以上。除前置部分外，其它
-% 部分双面印刷。
-
-% 论文装订不要用铁钉，以便长期存档和收藏。
-
-% 论文封面与封底之间的中缝（书脊）必须有论文题目、作者和学校名。
-
-% \section{编写格式}
-
-% 论文由前置部分、主体部分、附录部分(必要时)、结尾部分(必要时)组成。
-
-% 前置部分包括封面，题名页，声明及说明，前言，摘要(中、英文)，关键词，目次页，
-% 插图和附表清单(必要时)，符号、标志、缩略词、首字母缩写、单位、术语、名词解释
-% 表(必要时)。
-
-% 主体部分包括绪论(作为正文第一章)、正文、结论、致谢、参考文献表。
-
-% 附录部分包括必要的各种附录。
-
-% 结尾部分包括索引和封底。
-
-% \section{前置部分}
-
-% \subsection{封面（博士论文国图版用）}
-
-% 封面是论文的外表面，提供应有的信息，并起保护作用。
-
-% 封面上应包括下列内容：
-% \begin{enumerate}
-% \item 分类号  在左上角注明分类号，便于信息交换和处理。一般应注明《中国图书资
-%   料分类法》的类号，同时应注明《国际十进分类法UDC》的类号；
-% \item 密级  在右上角注明密级；
-% \item “博士学位论文”用大号字标明；
-% \item 题名和副题名   用大号字标明；
-% \item 作者姓名；
-% \item 学科专业名称；
-% \item 研究方向；
-% \item 导师姓名，职称；
-% \item 日期包括论文提交日期和答辩日期；
-% \item 学位授予单位。
-% \end{enumerate}
-
-% \subsection{题名}
-
-% 题名是以最恰当、最简明的词语反映论文中最重要的特定内容的逻辑组合。
-
-% 题名所用每一词语必须考虑到有助于选定关键词和编写题录、索引等二次文献可以提供
-% 检索的特定实用信息。
-
-% 题名应避免使用不常见的缩略词、首字母缩写字、字符、代号和公式等。
-
-% 题名一般不宜超过20字。
-
-% 论文应有外文题名，外文题名一般不宜超过10个实词。
-
-% 可以有副题名。
-
-% 题名在整本论文中不同地方出现时，应完全相同。
-
-% \subsection{前言}
-
-% 前言是作者对本论文基本特征的简介，如论文背景、主旨、目的、意义等并简述本论文
-% 的创新性成果。
-
-% \subsection{摘要}
-
-% 摘要是论文内容不加注释和评论的简单陈述。
-
-% 论文应有中、英文摘要，中、英文摘要内容应相同。
-
-% 摘要应具有独立性和自含性，即不阅读论文的全文，便能获得必要的信息，摘要
-% 中有数据、有结论，是一篇完整的短文，可以独立使用，可以引用，可以用于推广。摘
-% 要的内容应包括与论文同等量的主要信息，供读者确定有无必要阅读全文，也供文摘等
-% 二次文献引用。摘要的重点是成果和结论。
-
-% 中文摘要一般在1500字，英文摘要不宜超过1500实词。
-
-% 摘要中不用图、表、化学结构式、非公知公用的符号和术语。
-
-% \subsection{关键词}
-
-% 关键词是为了文献标引工作从论文中选取出来用于表示全文主题内容信息款目的单词或
-% 术语。
-
-% 每篇论文选取3－8个词作为关键词，以显著的字符另起一行，排在摘要的左下方。在英
-% 文摘要的左下方应标注与中文对应的英文关键词。
-
-% \subsection{目次页}
-
-% 目次页由论文的章、节、附录等的序号、名称和页码组成，另页排在摘要的后面。
-
-% \subsection{插图和附表清单}
-
-% 论文中如图表较多，可以分别列出清单并置于目次页之后。
-
-% 图的清单应有序号、图题和页码。表的清单应有序号、表题和页码。
-
-% 符号、标志、缩略词、首字母缩写、计量单位、名词、术语等的注释表符号、标志、缩略词、
-% 首字母缩写、计量单位、名词、术语等的注释说明汇集表，应置于图表清单之后。
-
-% \section{主体部分}
-
-% \subsection{格式}
-
-% 主体部分由绪论开始，以结论结束。主体部分必须由另页右页开始。每一章必须另页开
-% 始。全部论文章、节、目的格式和版面安排要划一，层次清楚。
-
-% \subsection{序号}
-
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width= 0.5\textwidth]{njuname.eps}\\
-%   \caption{测试附录中的插图}\label{fig:appendix1}
-% \end{figure}
-
-% 论文的章可以写成：第一章。节及节以下均用阿拉伯数字编排序号，如
-% 1.1，1.1.1等。
-
-% 论文中的图、表、附注、参考文献、公式、算式等一律用阿拉伯数字分别分章依序连续编排
-% 序号。其标注形式应便于互相区别，一般用下例：图1.2；表2.3；附注1）；文献[4]；式
-%   (6.3)等。
-
-% 论文一律用阿拉伯数字连续编页码。页码由首页开始，作为第1页，并为右页另页。封页、
-% 封二、封三和封底不编入页码，应为题名页、前言、目次页等前置部分单独编排页码。页码
-% 必须标注在每页的相同位置，便于识别。
-
-% \begin{equation}
-%     C_i = \frac{2E_i}{k_i(k_i-1)}
-% \end{equation}
-
-% 附录依序用大写正体A、B、C、$\cdots$编序号，如：附录A。附录中的图、表、式、参考文
-% 献等另行编序号，与正文分开，也一律用阿拉伯数字编码，但在数码前题以附条序码，如图
-% A.1；表B.2；式(B.3)；文献[A.5]等。
-
-% \subsection{绪论}
-
-% 绪论（综述）：简要说明研究工作的目的、范围、相关领域的前人工作和知识空白、理
-% 论基础和分析，研究设想、研究方法和实验设计、预期结果和意义等。一般在教科书中
-% 有的知识，在绪论中不必赘述。
-
-% 绪论的内容应包括论文研究方向相关领域的最新进展、对有关进展和问题的评价、本论
-% 文研究的命题和技术路线等；绪论应表明博士生对研究方向相关的学科领域有系统深入
-% 的了解，论文具有先进性和前沿性；
-
-% \begin{problem}
-% 测试定理环境。测试定理环境。测试定理环境。测试定理环境。测试定理环境。测试定理环境。
-% 测试定理环境。测试定理环境。测试定理环境。
-% \end{problem}
-
-% 为了反映出作者确已掌握了坚实的基础理论和系统的专门知识，具有开阔的科学视野，对研
-% 究方案作了充分论证，绪论应单独成章，列为第一章，绪论的篇幅应达$1\sim 2$万字，不
-% 得少于$1$万字；绪论引用的文献应在$100$篇以上，其中外文文献不少于$60\%$；引用文献
-% 应按正文中引用的先后排列。
-
-% \subsection{正文}
-
-% 论文的正文是核心部分，占主要篇幅。正文必须实事求是，客观真切，准确完备，合乎
-% 逻辑，层次分明，简便可读。
-
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width= 0.5\textwidth]{njuname.eps}\\
-%   \caption{测试附录中的插图}\label{fig:appendix2}
-% \end{figure}
-
-% 正文的每一章(除绪论外)应有小结，在小结中应明确阐明作者在本章中所做的工作，特
-% 别是创新性成果。凡本论文要用的基础性内容或他人的成果不应单独成章，也不应作过
-% 多的阐述，一般只引结论、使用条件等，不作推导。
-
-% \subsubsection{图}
-
-% 图包括曲线图、构造图、示意图、图解、框图、流程图、记录图、布置图、地图、照片
-% 、图版等。
-
-% 图应具有“自明性”，即只看图、图题和图例，不阅读正文，就可以理解图意。
-
-% 图应编排序号。每一图应有简短确切的图题，连同图号置于图下。必要时，应将图上的
-% 符号、标记、代码，以及实验条件等，用最简练的文字，横排于图题下方，作为图例说
-% 明。
-
-% \begin{example}
-% 测试定理环境。测试定理环境。测试定理环境。测试定理环境。测试定理环境。测试定理环境。
-% 测试定理环境。测试定理环境。测试定理环境。
-% \end{example}
-
-% 曲线图的纵、横坐标必须标注“量、标准规定符号、单位”。此三者只有在不必要标明
-% (如无量纲等)的情况下方可省略。坐标上标注的量的符号和缩略词必须与正文一致。
-
-% 照片图要求主题和主要显示部分的轮廓鲜明，便于制版。如用放大缩小的复制品，必须
-% 清晰，反差适中。照片上应该有表示目的物尺寸的标度。
-
-% \subsubsection{表}
-
-% 表的编排，一般是内容和测试项目由左至右横读，数据依序竖排。表应有自明性。
-
-% 表应编排序号。
-
-% 每一表应有简短确切的表题，连同标号置于表上。必要时，应将表中的符号、标记、代
-% 码，以及需要说明事项，以最简练的文字，横排于表题下，作为表注，也可以附注于表
-% 下。表内附注的序号宜用小号阿拉伯数字并加圆括号置于被标注对象的右上角，如：
-% xxx${}^{1)}$；不宜用“*”，以免与数学上共轭和物质转移的符号相混。
-
-% 表的各栏均应标明“量或测试项目、标准规定符号、单位”。只有在无必要标注的情况下
-% 方可省略。表中的缩略词和符号，必须与正文中一致。
-
-% 表内同一栏的数字必须上下对齐。表内不宜用“同上”，“同左”和类似词，一律填入具体数字
-% 或文字。表内“空白”代表未测或无此项，“－”或“\textellipsis”（因“－”可能与代表阴性
-%   反应相混）代表未发现，“0”代表实测结果确为零。
-
-% 如数据已绘成曲线图，可不再列表。
-
-% \subsubsection{数学、物理和化学式}
-
-% 正文中的公式、算式或方程式等应编排序号，序号标注于该式所在行(当有续行时，应
-% 标注于最后一行)的最右边。
-
-% 较长的式，另行居中横排。如式必须转行时，只能在$+$，$-$，$\times$，$\div$，$<$，
-% $>$处转行。上下式尽可能在等号“$=$”处对齐。
-
-% 小数点用“$.$”表示。大于$999$的整数和多于三位数的小数，一律用半个阿拉伯数字符的小
-% 间隔分开，不用千位撇。对于纯小数应将$0$列于小数点之前。
-
-% 示例：应该写成$94\ 652.023\ 567$和$0.314\ 325$, 不应写成$94,652.023,567$和
-% $.314,325$。
-
-% 应注意区别各种字符，如：拉丁文、希腊文、俄文、德文花体、草体；罗马数字和阿拉伯数
-% 字；字符的正斜体、黑白体、大小写、上下脚标（特别是多层次，如“三踏步”）、上下偏差
-% 等。
-
-% \subsubsection{计量单位}
-
-% 报告、论文必须采用国务院发布的《中华人民共和国法定计量单位》，并遵照《中华人
-% 民共和国法定计量单位使用方法》执行。使用各种量、单位和符号，必须遵循附录B所
-% 列国家标准的规定执行。单位名称和符号的书写方式一律采用国际通用符号。
-
-% \subsubsection{符号和缩略词}
-
-% 符号和缩略词应遵照国家标准的有关规定执行。如无标准可循，可采纳本学科或本专业
-% 的权威性机构或学术团体所公布的规定；也可以采用全国自然科学名词审定委员会编印
-% 的各学科词汇的用词。如不得不引用某些不是公知公用的、且又不易为同行读者所理解
-% 的、或系作者自定的符号、记号、缩略词、首字母缩写字等时，均应在第一次出现时一
-% 一加以说明，给以明确的定义。
-
-% \subsection{结论}
-
-% 报告、论文的结论是最终的、总体的结论，不是正文中各段的小结的简单重复。结论应
-% 该准确、完整、明确、精炼。在结论中要清楚地阐明论文中有那些自己完成的成果，特
-% 别是创新性成果；
-
-% 如果不可能导出应有的结论，也可以没有结论而进行必要的讨论。可以在结论或讨论中
-% 提出建议、研究设想、仪器设备改进意见、尚待解决的问题等。
-
-% \subsection{致谢}
-
-% 可以在正文后对下列方面致谢：
-
-% \begin{itemize}
-% \item 国家科学基金、资助研究工作的奖学金基金、合作单位、资助或支持的企业、组织或个
-% 人；
-% \item 协助完成研究工作和提供便利条件的组织或个人；
-% \item 在研究工作中提出建议和提供帮助的人；
-% \item 给予转载和引用权的资料、图片、文献、研究思想和设想的所有者；
-% \item 其他应感谢的组织或个人。
-% \end{itemize}
-
-% \subsection{参考文献表}
-
-% \subsubsection{专著著录格式}
-
-% 主要责任者，其他责任者，书名，版本，出版地：出版者，出版年
-
-% 例：1. 刘少奇，论共产党员的修养，修订2版，北京：人民出版社，1962
-
-% \subsubsection{连续出版物中析出的文献著录格式}
-
-% 析出文献责任者，析出文献其他责任者，析出题名，原文献题名，版本：文献中的位置。
-
-% 例：2. 李四光，地壳构造与地壳运动，中国科学，1973 (4)：400－429
-
-% 参考文献采用顺序编码制，按论文正文所引用文献出现的先后顺序连续编码。
-
-% \section{附录}
-
-% 附录是作为报告、论文主体的补充项目，并不是必需的。
-
-% 下列内容可以作为附录编于报告、论文后，也可以另编成册；
-
-% \begin{enumerate}
-% \item 为了整篇论文材料的完整，但编入正文又有损于编排的条理和逻辑性，这一材料
-% 包括比正文更为详尽的信息、研究方法和技术更深入的叙述，建议可以阅读的参考文献
-% 题录，对了解正文内容有用的补充信息等；
-% \item 由于篇幅过大或取材于复制品而不便于编入正文的材料；
-% \item 不便于编入正文的罕见珍贵资料；
-% \item 对一般读者并非必要阅读，但对本专业同行有参考价值的资料；
-% \item 某些重要的原始数据、数学推导、计算程序、框图、结构图、注释、统计表、计
-% 算机打印输出件等。
-% \end{enumerate}
-
-% 附录与正文连续编页码。
-
-% 每一附录均另页起。
-
-% \section{结尾部分 (必要时)}
+% \section{结尾部分  (必要时) }
 
 % 为了将论文迅速存储入电子计算机，可以提供有关的输入数据。可以编排分类索引、著者索
 % 引、关键词索引等。
@@ -2022,11 +1402,13 @@ $\indent\enspace$发生错误的回滚机制，使得系统在动态更新方面
 \end{education}
 % 论文作者在攻读学位期间所发表的文章的列表，按发表日期从近到远排列。
 \begin{publications}
-\item
+\item 曹春,马晓星,王东宇.``一种支持事务一致性的微服务动态更新方法'',专利号：202110263875.0
+\item 软件著作权：微服务动态演化支撑平台V1.0,登记号：2020SR1259091
 \end{publications}
 % 论文作者在攻读学位期间参与的科研课题的列表，按照日期从近到远排列。
 \begin{projects}
-\item
+\item 国家重点研发项目：软件定义的人机物融合云计算支撑技术与平台 (2018YFB1004805) ，2018年5月-2021年4月
+\item 国家重点研发项目：可持续演化的智能化软件理论、方法和技术 (2017YFB1001800) ，2017年9月-2021年8月
 \end{projects}
 \end{resume}
 

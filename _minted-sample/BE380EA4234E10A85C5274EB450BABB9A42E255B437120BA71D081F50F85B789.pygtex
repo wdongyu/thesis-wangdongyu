@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int} \PYG{n}{sock\PYGZus{}} \PYG{o}{=} \PYG{n}{socket}\PYG{p}{(}\PYG{n}{AF\PYGZus{}UNIX}\PYG{p}{,} \PYG{n}{SOCK\PYGZus{}STREAM}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{sock\PYGZus{}} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}opening stream socket\PYGZdq{}}\PYG{p}{);}
+  \PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k}{struct} \PYG{n}{sockaddr\PYGZus{}un} \PYG{n}{server\PYGZus{}}\PYG{p}{;}
+\PYG{n}{server\PYGZus{}}\PYG{p}{.}\PYG{n}{sun\PYGZus{}family} \PYG{o}{=} \PYG{n}{AF\PYGZus{}UNIX}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{strcpy}\PYG{p}{(}\PYG{n}{server\PYGZus{}}\PYG{p}{.}\PYG{n}{sun\PYGZus{}path}\PYG{p}{,} \PYG{n}{socket\PYGZus{}path}\PYG{p}{);}
+\PYG{k+kt}{int} \PYG{n}{len} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{strlenn}\PYG{p}{(}\PYG{n}{server\PYGZus{}}\PYG{p}{.}\PYG{n}{sun\PYGZus{}path}\PYG{p}{)} \PYG{o}{+} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{server\PYGZus{}}\PYG{p}{.}\PYG{n}{sun\PYGZus{}family}\PYG{p}{);}
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{connect}\PYG{p}{(}\PYG{n}{sock\PYGZus{}}\PYG{p}{,} \PYG{k}{reinterpret\PYGZus{}cast}\PYG{o}{\PYGZlt{}}\PYG{k}{struct} \PYG{n}{socketaddr} \PYG{o}{*\PYGZgt{}*}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{server\PYGZus{}}\PYG{p}{),} \PYG{n}{len}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{n}{close}\PYG{p}{(}\PYG{n}{sock\PYGZus{}}\PYG{p}{);}
+  \PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}connecting stream socket\PYGZdq{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{message} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}ADD \PYGZdq{}} \PYG{o}{+} \PYG{n}{traceid} \PYG{o}{+} \PYG{l+s}{\PYGZdq{} \PYGZdq{}} \PYG{o}{+} \PYG{n}{spanid}\PYG{p}{;}
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{write}\PYG{p}{(}\PYG{n}{sock\PYGZus{}}\PYG{p}{,} \PYG{n}{message}\PYG{p}{.}\PYG{n}{c\PYGZus{}str}\PYG{p}{(),} \PYG{n}{std}\PYG{o}{::}\PYG{n}{strlen}\PYG{p}{(}\PYG{n}{message}\PYG{p}{.}\PYG{n}{c\PYGZus{}str}\PYG{p}{()))} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{n}{perror}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}writinng on stream socket\PYGZdq{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{close}\PYG{p}{(}\PYG{n}{sock\PYGZus{}}\PYG{p}{);}
+\end{Verbatim}
